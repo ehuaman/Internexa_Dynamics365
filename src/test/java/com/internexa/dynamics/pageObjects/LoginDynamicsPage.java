@@ -1,7 +1,6 @@
 package com.internexa.dynamics.pageObjects;
 
-import org.openqa.selenium.Keys;
-
+import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
@@ -13,6 +12,7 @@ public class LoginDynamicsPage extends PageObject{
 		
 	public void inputUsuario(String strUsuario) {
 		find(By.name("loginfmt")).sendKeys(strUsuario);
+		Serenity.takeScreenshot();
 	}
 	
 	public void btnsiguiente() {
@@ -23,6 +23,7 @@ public class LoginDynamicsPage extends PageObject{
 	public void inputPass(String strPass) {
 		find(By.name("passwd")).sendKeys(strPass);
 		waitFor(3).seconds();
+		Serenity.takeScreenshot();
 	}
 
 	public void btnIniciar() {
