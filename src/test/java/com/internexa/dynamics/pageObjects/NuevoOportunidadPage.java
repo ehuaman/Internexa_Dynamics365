@@ -171,57 +171,57 @@ public class NuevoOportunidadPage extends PageObject {
 	        return idOportunidad;
 		  }
 
+	// public void btnGuardarYCerrar() {
+//	getDriver().findElement(By.xpath("//SPAN[@tabindex='-1'][text()=' Guardar y cerrar ']")).click();
+//	
+//}
+//
+////Función a parte para tener el cuenta el frame, si se hace en una misma ralentiza aun mas la carga
+//public int conocerTamaño(){
+//	getDriver().switchTo().frame("contentIFrame0");//La tabla esta dentro del iFrame0
+//    waitFor(1).seconds();
+//	HtmlTable theTable = new HtmlTable(find(By.xpath("//*[@id=\"gridBodyTable\"]"))); //Tabla
+//	int tamaño = theTable.getRowElements().size(); //Se conoce el tamaño.
+//	getDriver().switchTo().defaultContent();
+//    waitFor(1).seconds();
+//    return tamaño; // Retorna el valor a usar en la siguiente funcion.
+//}
+//
+//public void encontrarOportunidad(String idOportunidad) {
+//	 String element = new String();
+//	 try {
+//	        find(By.id("contentIFrame0")).waitUntilVisible();
+//	        getDriver().switchTo().frame("contentIFrame0");
+//	        waitFor(1).seconds();
+//	        WebElement table = getDriver().findElement(By.id("gridBodyTable"));                     
+//	        HtmlTable TheTable = new HtmlTable(table);
+//	        int i=1;
+//	        boolean found = true;
+//	        do {
+//	               // Campo ID DE OPORTUNIDAD
+//	               System.out.println("row " +i);
+//	               element = find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[2]/nobr/span")).getText();
+//	               if (element.equals(idOportunidad)) {                               
+//	                      found=false;
+//	               } else { 
+//	            	   i++;                              
+//	               }                   
+//	        }while(i<=TheTable.getRowElements().size() && found );
+//	        // Actions recibe un web element al que se le ejecutara una accion.
+//	        Actions act = new Actions(getDriver()); 
+//	        // Se selecciona la primer columna de la tabla (CHECKBOX) para realizar doble click
+//	        WebElement checkItem = getDriver().findElement(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[1]")); 
+//	        checkItem.click();                
+//	        // Accion dobleclic se le envia el webElement               
+//	        act.doubleClick(checkItem).build().perform();
+//	        waitFor(1).seconds();
+//	        getDriver().switchTo().defaultContent();
+//	        waitFor(1).seconds();
+//	 } catch (Exception ex) {
+//	        System.out.println(ex.getMessage() + "");
+//	 }
 	
-	public void btnGuardarYCerrar() {
-		getDriver().findElement(By.xpath("//SPAN[@tabindex='-1'][text()=' Guardar y cerrar ']")).click();
-		
-	}
-	
-	//Función a parte para tener el cuenta el frame, si se hace en una misma ralentiza aun mas la carga
-	public int conocerTamaño(){
-		getDriver().switchTo().frame("contentIFrame0");//La tabla esta dentro del iFrame0
-        waitFor(1).seconds();
-		HtmlTable theTable = new HtmlTable(find(By.xpath("//*[@id=\"gridBodyTable\"]"))); //Tabla
-		int tamaño = theTable.getRowElements().size(); //Se conoce el tamaño.
-		getDriver().switchTo().defaultContent();
-        waitFor(1).seconds();
-        return tamaño; // Retorna el valor a usar en la siguiente funcion.
-	}
-	
-    public void encontrarOportunidad(String idOportunidad) {
-		 String element = new String();
-		 try {
-		        find(By.id("contentIFrame0")).waitUntilVisible();
-		        getDriver().switchTo().frame("contentIFrame0");
-		        waitFor(1).seconds();
-		        WebElement table = getDriver().findElement(By.id("gridBodyTable"));                     
-		        HtmlTable TheTable = new HtmlTable(table);
-		        int i=1;
-		        boolean found = true;
-		        do {
-		               // Campo ID DE OPORTUNIDAD
-		               System.out.println("row " +i);
-		               element = find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[2]/nobr/span")).getText();
-		               if (element.equals(idOportunidad)) {                               
-		                      found=false;
-		               } else { 
-		            	   i++;                              
-		               }                   
-		        }while(i<=TheTable.getRowElements().size() && found );
-		        // Actions recibe un web element al que se le ejecutara una accion.
-		        Actions act = new Actions(getDriver()); 
-		        // Se selecciona la primer columna de la tabla (CHECKBOX) para realizar doble click
-		        WebElement checkItem = getDriver().findElement(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[1]")); 
-		        checkItem.click();                
-		        // Accion dobleclic se le envia el webElement               
-		        act.doubleClick(checkItem).build().perform();
-		        waitFor(1).seconds();
-		        getDriver().switchTo().defaultContent();
-		        waitFor(1).seconds();
-		 } catch (Exception ex) {
-		        System.out.println(ex.getMessage() + "");
-		 }
-}
+//}
 
 
 	
