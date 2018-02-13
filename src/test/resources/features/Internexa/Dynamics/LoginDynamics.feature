@@ -4,9 +4,9 @@ Feature: Creacion Nuevo Oportunidad
 
 @SmokeTest
 Scenario: Creacion de Oportunidades
-Given me logueo al aplicativo Dynamics como "ITX-S-CRM@isaempresas.onmicrosoft.com" con pass "C391qsc250"
+Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Feb2018*"
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "GELLY S.A" el nombre "PRUEBA JUANFG" el tipo de venta "Nuevo cliente" fecha estimada de venta "06/02/2018" probabilidad de exito "10%" fecha estimada de ingreso "08/02/2018" tipo de oportunidad "Express" contrato a meses "30" y se guarda la oportunidad
-Then se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "INTERNEXA LAST MILE NACIONAL"
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Sorozco S.A." el nombre "PRUEBA Auto1.3" el tipo de venta "Nuevo cliente" fecha estimada de venta "13/02/2018" probabilidad de exito "60%" fecha estimada de ingreso "14/02/2018" tipo de oportunidad "Proyecto" contrato a meses "9" y se guarda la oportunidad
+Then se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "40"
 Then se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad
