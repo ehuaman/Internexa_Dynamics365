@@ -21,7 +21,8 @@ public class NuevoOportunidadPage extends PageObject {
 		
 	public void inputCuenta(String strCuenta) {
 		try{ 
-            getDriver().switchTo().frame("contentIFrame1");
+			
+			getDriver().switchTo().frame("contentIFrame1");
             waitFor(2).seconds();
             //getDriver().findElement(By.xpath("//*[@id=\"parentaccountid\"]/div[1]")).click();
             //waitFor(1).seconds();
@@ -40,8 +41,10 @@ public class NuevoOportunidadPage extends PageObject {
 		try{
             getDriver().switchTo().frame("contentIFrame1");
             waitFor(2).seconds();
+         
             getDriver().findElement(By.xpath("//*[@id=\"name\"]/div[1]")).click();
             waitFor(1).seconds();
+          //*[@id="Nombre_label"]
             getDriver().findElement(By.xpath("//INPUT[@id='name_i']")).sendKeys(strNombre);
             waitFor(1).seconds();
             getDriver().switchTo().defaultContent();

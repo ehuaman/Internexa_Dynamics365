@@ -46,7 +46,7 @@ public class OportunidadPage extends PageObject{
 	        find(By.xpath("//*[@id=\"item0\"]/a[2]")).waitUntilVisible();
 	        find(By.xpath("//*[@id=\"item0\"]/a[2]")).waitUntilEnabled();
 	        getDriver().findElement(By.xpath("//*[@id=\"item0\"]/a[2]")).click();
-			waitFor(5).seconds();
+			waitFor(3).seconds();
 			      
 	        getDriver().switchTo().defaultContent();
             waitFor(1).seconds();
@@ -64,19 +64,23 @@ public class OportunidadPage extends PageObject{
                waitFor(1).seconds();             
                HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
                String element=new String();
+              
                int i=1;
+               int intCatidadElementos;
                do {
                       //Campo propiedades                           
                       //path propiedades = find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]/a[1]")).getText();
                       //campo listo
                       element=find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[4]/div[1]")).getText();
+                      intCatidadElementos=TheTable.getRowElements().size();
+                     
                       if (element.equals("No")) {
                             // System.out.println(find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]")).getText());
                              find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]/nobr/a/li/span/span/span[2]")).click();
                              waitFor(3).second();
                       }            
                       i++;
-               }while(i<=TheTable.getRowElements().size()) ;
+               }while(i<=intCatidadElementos) ;
                getDriver().switchTo().defaultContent();
                waitFor(1).seconds();
         }catch (Exception ex) {

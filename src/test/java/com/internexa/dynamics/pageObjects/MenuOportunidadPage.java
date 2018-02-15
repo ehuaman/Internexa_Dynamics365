@@ -16,5 +16,6 @@ import net.serenitybdd.core.pages.PageObject;
 			find(By.id("nav_oppts")).waitUntilVisible();
 			find(By.id("nav_oppts")).waitUntilEnabled();
 			find(By.id("nav_oppts")).click();
+			waitFor(4).seconds();
 		}
 	}

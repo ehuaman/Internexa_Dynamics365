@@ -22,8 +22,8 @@ public class NuevoOportunidadSteps {
 		nuevoOportunidadPage.listTipoOportunidad(tipoOportunidad);
 		nuevoOportunidadPage.inputContratoMeses(contratoMeses);
 		String idOport =nuevoOportunidadPage.btnGuardar();
-		nuevoOportunidadPage.btnGuardarYCerrar();
-		nuevoOportunidadPage.encontrarOportunidad(idOport);
+		//nuevoOportunidadPage.btnGuardarYCerrar();
+		//nuevoOportunidadPage.encontrarOportunidad(idOport);
 	
     }
 
