@@ -37,15 +37,22 @@ Utilidad utilidad;
 	public void SeleccionarIPS(String nombreIPS) {
 	    try {
 	    	 getDriver().switchTo().frame("NavBarGloablQuickCreate");
+	    	 
 	    	 waitFor(2).seconds();
-	   
-		    	getDriver().findElement(By.xpath("//INPUT[@id='itx_systemuserid_ledit']")).clear();
-		    	getDriver().findElement(By.xpath("//INPUT[@id='itx_systemuserid_ledit']")).click();
-	    	getDriver().findElement(By.xpath("//INPUT[@id='itx_systemuserid_ledit']")).sendKeys(nombreIPS);
-	    	//*[@id="itx_systemuserid_lookupValue"]
-	      	//getDriver().findElement(By.xpath("$x('//INPUT[@id='itx_systemuserid_ledit']')")).sendKeys(nombreIPS);
-	        getDriver().findElement(By.id("itx_systemuserid")).sendKeys(Keys.ENTER);
-	        waitFor(2).seconds();
+	    	 find(By.xpath("//*[@id='rofContainer']")).waitUntilVisible();
+	    	 //getDriver().findElement(By.xpath("//UL[@class='ms-crm-InlineLookupEdit']")).click();
+	    	 //css=div.ms-crm-Floating-Div
+	    	 getDriver().findElement(By.xpath("//*[@id='itx_systemuserid']/div[1]/span/div[2]")).click();
+	    	 getDriver().findElement(By.xpath("//*[@id='itx_systemuserid_cl_span']")).click();
+	    	
+	    	 find(By.cssSelector("div.ms-crm-Floating-Div")).click();
+	    	 //*[@id='itx_systemuserid_cl_span']
+	    	 	    	 
+	    	     	 //id=itx_systemuserid_ledit
+	    	 find(By.xpath("//INPUT[@id='itx_systemuserid_ledit']")).clear();
+	    	 find(By.xpath("//INPUT[@id='itx_systemuserid_ledit']")).typeAndEnter(nombreIPS);
+	    	
+	    	 waitFor(2).seconds();
 	        
 	         getDriver().findElement(By.xpath("//*[@id='itx_systemuserid_IMenu']/li/a[contains(.,'"+nombreIPS.toUpperCase()+"')]")).click();
 	   	        Serenity.takeScreenshot();
@@ -60,12 +67,17 @@ Utilidad utilidad;
 	    try {    
 	    	//getDriver().switchTo().frame("contentIFrame1");
             waitFor(2).seconds();
-            find(By.xpath("//*[@id='rofContainer']")).waitUntilVisible();
+            //
 	    	find(By.xpath("//*[@id='itx_observacionessolicitud']/div[1]")).click();
 	    	waitFor(2).seconds();
-	      	getDriver().findElement(By.xpath("//INPUT[@id='itx_observacionessolicitud_i']")).sendKeys(txtObservacion);
-	      	waitFor(1).seconds();
+	    	//getDriver().findElement(By.xpath("//TEXTAREA[@id='itx_observacionessolicitud_i']")).sendKeys(txtObservacion);
+	    	find(By.xpath("//TEXTAREA[@id='itx_observacionessolicitud_i']")).type(txtObservacion);
+	    	
+	    	 //getDriver().findElement(By.xpath("//*[@id='itx_opportunityid_cl']")).sendKeys(Keys.ENTER);
+	    	waitFor(1).seconds();
 	        Serenity.takeScreenshot();
+	        getDriver().switchTo().defaultContent();
+	        waitFor(1).seconds();
 	        GuardarFactibilidad();
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
@@ -77,13 +89,12 @@ Utilidad utilidad;
 	
 	public void GuardarFactibilidad() {
 	    try {    
-	    
+	    //NavBarGloablQuickCreate
 	    	find(By.xpath("//*[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']")).click();
-	      	
+	    	//BUTTON[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']
 	        Serenity.takeScreenshot();
 	        
-	        getDriver().switchTo().defaultContent();
-	        waitFor(1).seconds();
+	        
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }
