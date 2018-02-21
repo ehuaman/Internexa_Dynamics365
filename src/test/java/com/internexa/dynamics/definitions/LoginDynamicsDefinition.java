@@ -8,6 +8,7 @@ import com.internexa.dynamics.steps.OportunidadesAbiertasSteps;
 import com.internexa.dynamics.steps.ProductoEditarSteps;
 import com.internexa.dynamics.steps.NuevoOportunidadSteps;
 import com.internexa.dynamics.steps.OportunidadSteps;
+import com.internexa.dynamics.steps.CerrarSesionSteps;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -38,6 +39,9 @@ public class LoginDynamicsDefinition {
 	
 	@Steps
 	FactibilidadSteps factibilidadSteps;
+	
+	@Steps
+	CerrarSesionSteps cerrarSesionSteps;
 	
 	@Given("^me logueo al aplicativo Dynamics como \"([^\"]*)\" con pass \"([^\"]*)\"$")
 	public void me_logueo_al_aplicativo_Dynamics_como_con_pass(String strUsuario, String strPass) throws Throwable {
@@ -86,18 +90,44 @@ public class LoginDynamicsDefinition {
 	factibilidadSteps.llenarObservacion("Pruebas factibilidad 12233");
 }
 
-/*@When("^selecciono oportunidad que requiere aprobación$")
-public void selecciono_oportunidad_que_requiere_aprobación() throws Exception {
+@Then("^se envia solicitud factibilidad$")
+public void se_envia_solicitud_factibilidad() throws Exception {
     // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+	factibilidadSteps.enviarSolitudFactibilidad();
 }
 
-@Then("^Se aprueba Factibilidad$")
-public void se_aprueba_Factibilidad() throws Exception {
+@Then("^se cierra sesión de Gerente Cuenta$")
+public void se_cierra_sesión_de_Gerente_Cuenta() throws Exception {
     // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+	cerrarSesionSteps.cerrarSeccionUsuario();
+}
+
+
+@When("^elijo Ventas luego Actividades$")
+public void elijo_Ventas_luego_Actividades() throws Exception {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new PendingException();
+}
+
+@Then("^se busca correo de solicitud de factibilidad$")
+public void se_busca_correo_de_solicitud_de_factibilidad() throws Exception {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new PendingException();
+}
+
+@Then("^se seleccion el correo que necesita aprobacion$")
+public void se_seleccion_el_correo_que_necesita_aprobacion() throws Exception {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new PendingException();
+}
+
+@Then("^se ingresa y se llenan datos requeridos$")
+public void se_ingresa_y_se_llenan_datos_requeridos() throws Exception {
+    // Write code here that turns the phrase above into concrete actions
+    //throw new PendingException();
+}
 	
 
-	}	*/
+	
 	
 }
