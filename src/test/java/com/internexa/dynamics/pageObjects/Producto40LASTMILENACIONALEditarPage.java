@@ -41,7 +41,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
                valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
 
                if (element.equals("Sí") && valorElemento.isEmpty() ) {                               
-            	   //System.out.println(element+"Cambiar");
+            	   
             	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,propiedadSitioA);
             	   if (propiedadSitioA.contentEquals("")) {
       				 	getDriver().switchTo().frame("contentIFrame1");
