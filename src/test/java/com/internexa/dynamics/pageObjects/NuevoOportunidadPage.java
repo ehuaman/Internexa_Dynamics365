@@ -5,19 +5,24 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.DoubleClickAction;
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.jetty9.util.log.Log;
 import com.internexa.dynamics.HtmlTable;
+import com.internexa.dynamics.toolBox.Utilidad;
 
+import cucumber.api.java.it.Date;
 import net.serenitybdd.core.annotations.findby.By;
+
 import net.serenitybdd.core.pages.PageObject;
 
 public class NuevoOportunidadPage extends PageObject {
+	Utilidad utilidad;
 	
 	String idOportunidad= new String();
+	public String NombreOportunidad;
 		
 	public void inputCuenta(String strCuenta) {
 		try{ 
@@ -39,13 +44,17 @@ public class NuevoOportunidadPage extends PageObject {
 	
 	public void inputNombre(String strNombre) {
 		try{
+			String HoraIngreso;
+			HoraIngreso=utilidad.FechaHHmmss();
+			
             getDriver().switchTo().frame("contentIFrame1");
             waitFor(2).seconds();
          
             getDriver().findElement(By.xpath("//*[@id=\"name\"]/div[1]")).click();
             waitFor(1).seconds();
           //*[@id="Nombre_label"]
-            getDriver().findElement(By.xpath("//INPUT[@id='name_i']")).sendKeys(strNombre);
+            NombreOportunidad=strNombre+" "+HoraIngreso;
+            getDriver().findElement(By.xpath("//INPUT[@id='name_i']")).sendKeys(NombreOportunidad);
             waitFor(1).seconds();
             getDriver().switchTo().defaultContent();
             waitFor(1).seconds();

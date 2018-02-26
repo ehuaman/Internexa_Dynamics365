@@ -14,4 +14,9 @@ public class MenuOportunidadSteps {
 		menuOportunidadPage.venta();
 		menuOportunidadPage.oportunidad();
 	}
+	
+	public void ingresarActividad() {
+		menuOportunidadPage.venta();
+		menuOportunidadPage.actividades();;
+	}
 }

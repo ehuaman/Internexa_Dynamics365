@@ -1,9 +1,5 @@
 package com.internexa.dynamics.pageObjects;
 
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
-
 import com.internexa.dynamics.HtmlTable;
 
 import net.serenitybdd.core.Serenity;
@@ -63,15 +59,12 @@ public class OportunidadPage extends PageObject{
                getDriver().switchTo().frame("contentIFrame1");
                waitFor(1).seconds();             
                HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
-               String element=new String();
+               String element = new String();
               
                int i=1;
                int intCatidadElementos;
                do {
-                      //Campo propiedades                           
-                      //path propiedades = find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]/a[1]")).getText();
-                      //campo listo
-                      element=find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[4]/div[1]")).getText();
+                      element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div[1]")).getText();
                       intCatidadElementos=TheTable.getRowElements().size();
                      
                       if (element.equals("No")) {

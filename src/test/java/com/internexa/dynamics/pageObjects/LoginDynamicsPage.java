@@ -1,6 +1,5 @@
 package com.internexa.dynamics.pageObjects;
 
-import org.openqa.selenium.support.ui.Select;
 
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
