@@ -164,9 +164,7 @@ public String numeroFactibilidad;
 			 
 			 ArrayList<String> tabs2 = new ArrayList<String> (getDriver().getWindowHandles());
 			 getDriver().switchTo().window(tabs2.get(1));
-			 //getDriver().close();
-			 //getDriver().switchTo().window(tabs2.get(0));
-			 
+
 			 find(By.id(nombreFrame+"0")).waitUntilVisible();
 		        getDriver().switchTo().frame(nombreFrame+"0");
 		        
@@ -263,29 +261,28 @@ public String numeroFactibilidad;
 	    	waitFor(2).seconds();
 	    	HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
             String element = new String();
+            String element2 = new String();
             
 	    	int i=1;
 	    	int intCatidadElementos;
 	    	String salirDo="No";
 	    	do {
 	    		
-	    		find(By.xpath("//*[@id='gridBodyTable']/tbody/tr[1]/td[2]/nobr")).click();
-		    	utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr[1]/td[2]/nobr");
-		    	getDriver().switchTo().defaultContent();
+	    		find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr")).setWindowFocus();
 		    	
-                element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/nobr")).getText();
+                element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[5]/nobr")).getText();
+                element2 = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr")).getText();
                 intCatidadElementos=TheTable.getRowElements().size();
-                
-                if (element.equals(MenuOportunidadPage.NombreOportunidad)) {
-                      // System.out.println(find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]")).getText());
-                       find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/nobr")).click();
+                	
+                if (element.equals(element) && element2.equals("Solicitud de factibilidad")) {
+                       utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr");
                        salirDo="OK";
                        waitFor(3).second();
                 }            
                 i++;
          }while(i<=intCatidadElementos && salirDo.equals("No")) ;
 	    	
-	    	
+	    	getDriver().switchTo().defaultContent();
 	    	getDriver().switchTo().frame(nombreFrame+"1");
 	    		find(By.xpath("//*[@id=\"Email_content\"]/div[1]/div[2]")).click();
 	    	Serenity.takeScreenshot();
