@@ -8,6 +8,7 @@ import net.serenitybdd.core.pages.PageObject;
 import org.openqa.selenium.Keys; 
 
 public class OportunidadPage extends PageObject{
+	static String codigoProductoRegistar;
 	
 	public void agregarProducto() {
 		try{ 
@@ -33,6 +34,8 @@ public class OportunidadPage extends PageObject{
 			getDriver().switchTo().frame("contentIFrame1");
 	        waitFor(2).seconds();
 	        find(By.id("lookup_opportunityproductsGrid_ledit")).setWindowFocus();
+	        
+	        codigoProductoRegistar=productoRegistrar;
 	        getDriver().findElement(By.id("lookup_opportunityproductsGrid_ledit")).sendKeys(productoRegistrar);
 	        
 	        //::Audy Ch: 201/02/02:: Tomar Evidencias

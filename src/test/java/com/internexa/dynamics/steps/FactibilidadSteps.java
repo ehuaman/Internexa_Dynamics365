@@ -33,10 +33,10 @@ public class FactibilidadSteps  {
 		
 		factibilidadPage.buscarCorreoAprobar();
 	}
-	public void evaluacionAprFactibilidad() {
+	public void evaluacionAprFactibilidad(String Dato01) {
 		
 		factibilidadPage.productoEvaluacion();
-		producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", "ICA");
+		producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", Dato01);
 		factibilidadPage.cambioEstadoFactibilidad();
 		
 	}

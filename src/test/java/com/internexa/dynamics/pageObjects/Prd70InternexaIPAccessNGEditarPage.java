@@ -8,16 +8,13 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
-public class Producto40LASTMILENACIONALEditarPage extends PageObject {
-
+public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
 	
 	public void encontrarOportunidad(String propiedadCapacidad, 
-									 String propiedadCiudadA, 
-									 String propiedadCiudadB, 
-									 String propiedadDireccion,
+									 String propiedadCiudadA,
 									 String propiedadSitioA) {
 		 String element = new String();
 	      String valorElemento = new String();
@@ -42,7 +39,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 
                if (element.equals("Sí") && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
-            	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,propiedadSitioA);
+            	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,propiedadSitioA);
             	   if (propiedadSitioA.contentEquals("")) {
       				 	getDriver().switchTo().frame("contentIFrame1");
 		      		}
@@ -72,8 +69,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	 * @param intColumna
 	 * @param propiedadCapacidad
 	 * @param propiedadCiudadA
-	 * @param propiedadCiudadB
-	 * @param propiedadDireccion
+	 
 	 * //ingresa los valores de cada una de las Propiedades faltantes en el producto
 	   //Tener en cuenta que los nombres de Ciudades tienen que tener tildes si corresponde
 	        	
@@ -81,8 +77,6 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	public void ActualizarPropiedadesProducto(Integer intColumna,
 											  String propiedadCapacidad, 
 											  String propiedadCiudadA, 
-											  String propiedadCiudadB, 
-											  String propiedadDireccion,
 											  String propiedadSitioA) {
 	        try {  
 
@@ -98,13 +92,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	            	else if (intColumna==7) {     
-	            		llenarPropiedades.Ciudad(propiedadCiudadB);
-	            	}
-	            		else if (intColumna==8) {     
-	            			llenarPropiedades.DireccionPunta(propiedadDireccion);
-	            		}
-	            		else if (intColumna==9) {     
+	           	else if (intColumna==9) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
 	            		}
 	        	
@@ -119,10 +107,4 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	        }
 	  }
 	 
-	
-
-
-
 }
-
-

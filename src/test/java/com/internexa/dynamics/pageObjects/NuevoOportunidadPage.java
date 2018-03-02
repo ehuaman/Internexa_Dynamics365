@@ -22,7 +22,7 @@ public class NuevoOportunidadPage extends PageObject {
 	Utilidad utilidad;
 	
 	String idOportunidad= new String();
-	public String NombreOportunidad;
+	static String NombreOportunidad;
 		
 	public void inputCuenta(String strCuenta) {
 		try{ 

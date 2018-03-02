@@ -1,14 +1,19 @@
 package com.internexa.dynamics.steps;
 
-import com.internexa.dynamics.pageObjects.Producto40LASTMILENACIONALEditarPage;
+//import com.internexa.dynamics.pageObjects.Producto40LASTMILENACIONALEditarPage;
 
 import net.thucydides.core.annotations.Step;
+import com.internexa.dynamics.pageObjects.BuscarProductoPage;
 
 public class ProductoEditarSteps {
-	Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
+	BuscarProductoPage buscarProductoPage;
+	//Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
 	
 	@Step
-	public void editar_producto_oportunidad(String propiedadCapacidad, String propiedadCiudadA, String propiedadCiudadB, String propiedadDireccion) {
-		producto40LASTMILENACIONALEditarPage.encontrarOportunidad(propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,"");
+	public void editar_producto_oportunidad(String Dato1, String Dato2, String Dato3, String Dato4) {
+		
+		buscarProductoPage.seleccionarProducto(Dato1, Dato2, Dato3, Dato4);
+		
+		//producto40LASTMILENACIONALEditarPage.encontrarOportunidad(propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,"");
 	}
 }

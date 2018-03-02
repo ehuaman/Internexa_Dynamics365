@@ -17,6 +17,10 @@ public class MenuOportunidadSteps {
 	
 	public void ingresarActividad() {
 		menuOportunidadPage.venta();
-		menuOportunidadPage.actividades();;
+		menuOportunidadPage.actividades();
+	}
+	public void ingresarFactibilidad() {
+		menuOportunidadPage.venta();
+		menuOportunidadPage.factibilidad();
 	}
 }
