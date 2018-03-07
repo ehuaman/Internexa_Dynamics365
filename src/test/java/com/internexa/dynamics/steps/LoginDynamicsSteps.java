@@ -22,9 +22,9 @@ public class LoginDynamicsSteps {
 		loginDynamicsPage.inputPass(strPass);
 		loginDynamicsPage.btnIniciar();
 		loginDynamicsPage.btnMantenerSecion();
-		loginDynamicsPage.btnMsjeCorreo();
-		loginDynamicsPage.chkActivo();
-		loginDynamicsPage.btnContinuar();
+		//loginDynamicsPage.btnMsjeCorreo();
+		//loginDynamicsPage.chkActivo();
+		//loginDynamicsPage.btnContinuar();
 	}
 	
 	

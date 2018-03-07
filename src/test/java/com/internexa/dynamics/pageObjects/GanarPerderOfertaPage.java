@@ -35,7 +35,34 @@ public class GanarPerderOfertaPage extends PageObject {
 	String lblDigitaIPS = "//input[@id='itx_usuarioipsid_ledit']";
 	String lblContieneTecnico="//*[@id='itx_contactotecnicoid']/div[1]";
 	String lblDigitaTEcnico = "//input[@id='itx_contactotecnicoid_ledit']";
-								
+	
+	String btnGanar="//*[@id='crmRibbonManager']/div/ul/li[5]";
+	String btnGeneraDoc="//*[@id='TabNode_tab0Tab']/a/span/span";
+	String btnDocumentos="//*[@id='Node_navSPDocuments']";
+	String idframeContenedor="areaSPDocumentsFrame";
+				
+	String btnCargarDoc="//*[@id=\"commandContainer0\"]/ul/li[2]";
+	String seleccionArchivo="//*[@id='userFile']";
+	String idframeCargaArchivo="InlineDialog_Iframe";
+	
+	String btnTresPuntos="//*[@id='crmRibbonManager']/div/ul/li[10]";
+	String btnAsociarContrato="//*[@id='moreCommandsList']/li[2]";
+	
+	String contContrato="//*[@id='itx_contratoid']/div[1]";
+	String editContrato="//input[@id=\"itx_contratoid_ledit\"]";
+	String contCompania="//*[@id=\"itx_companiaitxid\"]/div[1]";
+	String editCompania="//input[@id=\"itx_companiaitxid_ledit\"]";
+	String btnGuardarPant ="//*[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']";
+	
+	String btnPerder="//*[@id='crmRibbonManager']/div/ul/li[6]";
+	String ipsFrame="NavBarGloablQuickCreate";
+	String strContenedorNotivo ="//*[@id='itx_motivodecierreid']/div[1]";
+	String strInputMotivo ="//input[@id='itx_motivodecierreid_ledit']";
+	
+    String strContenedorDescrip="//*[@id='itx_descripciondecierre']/div[1]";
+	String strTextareaDescrip="//textarea[@id='itx_descripciondecierre_i']";
+	String strContenedorNotivoGana="";
+	
 	
 	public void buscarOferta() {
 		try{ 
@@ -156,7 +183,7 @@ public class GanarPerderOfertaPage extends PageObject {
 		
 	    try {
 	    	Robot robot = new Robot();
-	    	 waitFor(2).second();
+	    	 waitFor(5).second();
             getDriver().switchTo().frame(nombreFrame+"1");
 
             findBy(lblContieneTecnico).click();
@@ -189,7 +216,7 @@ public class GanarPerderOfertaPage extends PageObject {
 		try{ 
             
 			if (strGanarPerder.equals("Ganar")) {
-				GanarOferta();
+				GanarOferta(strMotivo,strDescrip);
 			}
 			else if (strGanarPerder.equals("Perder")) {
 				PerderOferta(strMotivo,strDescrip);
@@ -203,13 +230,94 @@ public class GanarPerderOfertaPage extends PageObject {
            }	
 		}
 	
-	public void GanarOferta() {
+	public void GanarOferta(String strMotivoGanar, String strDescripGanar) {
 		try{ 
-			//*[@id="crmRibbonManager"]/div/ul/li[5]
-			
-			}
+			Robot robot = new Robot();
+
+			utilidad.esperaDesaparecer();
+		    waitFor(2).second();
+		    
+			//Generar Documentos
+		    		    
+		    findBy(btnGeneraDoc).click();
+		    waitFor(1).second();
+		    findBy(btnDocumentos).click();
+		    waitFor(2).second();
+		    utilidad.esperaDesaparecer();
+		    //
+		    getDriver().switchTo().frame(nombreFrame+"1");
+		   
+		    find(By.id("areaSPDocuments")).click();
+		    find(By.id(nombreFrame+"1")).setWindowFocus();
+		 
+	    	getDriver().switchTo().frame(idframeContenedor);
+	    	
+	    		findBy(btnCargarDoc).click();
+	    		waitFor(1).second();	
+	    	getDriver().switchTo().parentFrame();
+	    	getDriver().switchTo().defaultContent();
+	    	////Agregar Archivo
+	    	getDriver().switchTo().frame(idframeCargaArchivo);
+	    		getDriver().findElement(By.xpath(seleccionArchivo)).sendKeys("C:/Users/Administrador/Documents/COLOMBIA-ProyectoINTERNEXA/Documento orden de servicio.txt");
+	    		findBy("//*[@id='butBegin']").click();
+	    		waitFor(3).second();
+	    		utilidad.esperaDesaparecer();
+	    		waitFor(3).second();
+	    	getDriver().switchTo().defaultContent();
+	    	
+	    	
+	    	findBy("//*[@id='TabNode_tab0Tab-main']/a/span/span").click();
+	    	
+	    	findBy(btnTresPuntos).click();
+	    	findBy(btnAsociarContrato).click();	    	
+			///
+	    	////////////////////// Actualizar Contrato
+	    	utilidad.esperaDesaparecer();
+	    	getDriver().switchTo().frame(ipsFrame);
+	    	waitFor(3).second();
+	          
+	    	
+	    	find(By.xpath(contContrato)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+            find(By.xpath(editContrato)).sendKeys(Keys.ENTER);
+            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_contratoid_IMenu']/div[2]/ul/li[1]")).click();
+          
+            //find(By.xpath(contCompania)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+            find(By.xpath(editCompania)).sendKeys(Keys.ENTER);
+            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_companiaitxid_IMenu']/div[2]/ul/li[1]/a[2]")).click();
+          //*[@id="item6"]/a[2]
+            getDriver().switchTo().defaultContent();
             
-           
+            Serenity.takeScreenshot();
+            
+            getDriver().findElement(By.xpath(btnGuardarPant)).click();
+            
+            waitFor(2).seconds();
+	        getDriver().switchTo().alert().accept();
+	        waitFor(2).seconds();
+	        getDriver().switchTo().alert().accept();
+	        waitFor(2).seconds();
+
+	    	//Ganar Oferta
+			findBy(btnGanar).click();
+			
+			//Motivo de oferta
+			PantallaCierreOferta (strMotivoGanar, strDescripGanar);
+			//utilidad.esperaDesaparecer();
+			waitFor(5).seconds();
+			getDriver().switchTo().alert().accept();
+	        waitFor(2).seconds();
+	        Serenity.takeScreenshot();
+	        waitFor(1).seconds();
+	       /* getDriver().close();
+	        getDriver().switchTo().frame(nombreFrame+"1");
+	        	getDriver().findElement(By.xpath("//*[@id='Administracion_Expander']")).click();
+	        	waitFor(1).seconds();
+	        	getDriver().findElement(By.xpath("//*[@id='Administracion_content']/div/div[1]")).click();
+	        getDriver().switchTo().defaultContent();*/
+	        
+		}
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
            }	
@@ -217,15 +325,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	
 	public void PerderOferta(String strMotivoPerder, String strDescripPerder) {
 		try{ 
-			String btnPerder="//*[@id='crmRibbonManager']/div/ul/li[6]";
-			String ipsFrame="NavBarGloablQuickCreate";
-			String strContenedorNotivo ="//*[@id='itx_motivodecierreid']/div[1]";
-		    String strInputMotivo ="//input[@id='itx_motivodecierreid_ledit']";
-		    String strContenedorDescrip="//*[@id='itx_descripciondecierre']/div[1]";
-			String strTextareaDescrip="//textarea[@id='itx_descripciondecierre_i']";
-			String btnGuardarPant ="//*[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']";
 			
-		    Robot robot = new Robot();
 		    Serenity.takeScreenshot();
 		    utilidad.esperaDesaparecer();
 		    waitFor(2).second();
@@ -234,31 +334,10 @@ public class GanarPerderOfertaPage extends PageObject {
 			waitFor(3).second();
 			utilidad.esperaDesaparecer();
 			//PANTALLA PARA LLENAR
-				getDriver().switchTo().frame(ipsFrame);
-				waitFor(1).second();
-		       
-				find(By.xpath(strContenedorNotivo)).waitUntilVisible();
-				find(By.xpath(strContenedorNotivo)).waitUntilEnabled();
-				find(By.xpath(strContenedorNotivo)).click();
-				robot.keyPress(KeyEvent.VK_F2);
-	            find(By.xpath(strInputMotivo)).sendKeys(Keys.ENTER);
-							
-				getDriver().findElement(By.xpath("//*[@id=\"itx_motivodecierreid_IMenu\"]/li["+strMotivoPerder+"]")).click();
-				
-				//*[@id="item25"]/a[2]/span/nobr/span[contains.,"Perdido por cliente canceló proyecto"]
-				
-				find(By.xpath(strContenedorDescrip)).click();
-				find(By.xpath(strTextareaDescrip)).typeAndEnter(strDescripPerder);
-				
-				getDriver().switchTo().defaultContent();
-				
-				getDriver().findElement(By.xpath(btnGuardarPant)).click();
-			
-				  utilidad.esperaDesaparecer();
+			PantallaCierreOferta ( strMotivoPerder, strDescripPerder);	
 				  //waitFor(2).seconds();
-			  waitFor(3).seconds();
+			  waitFor(5).seconds();
 		        Serenity.takeScreenshot();
-		       waitFor(2).seconds();
 		        getDriver().switchTo().alert().accept();
 		        waitFor(1).seconds();
 		        getDriver().switchTo().frame(nombreFrame+"1");
@@ -274,5 +353,39 @@ public class GanarPerderOfertaPage extends PageObject {
         	   System.out.println(ex.getMessage()+"");  
            }	
 		}
+	
+	public void PantallaCierreOferta(String strMotivoCierre, String strDescripCierre) {
+		try{ 
+			Robot robot = new Robot();
+			waitFor(1).second();
+	getDriver().switchTo().frame(ipsFrame);
+	waitFor(1).second();
+   
+	find(By.xpath(strContenedorNotivo)).waitUntilVisible();
+	find(By.xpath(strContenedorNotivo)).waitUntilEnabled();
+	find(By.xpath(strContenedorNotivo)).click();
+	robot.keyPress(KeyEvent.VK_F2);
+    find(By.xpath(strInputMotivo)).sendKeys(Keys.ENTER);
+				
+	getDriver().findElement(By.xpath("//*[@id=\"itx_motivodecierreid_IMenu\"]/li["+strMotivoCierre+"]")).click();
+	
+	waitFor(1).second();
+	
+	find(By.xpath(strContenedorDescrip)).click();
+	find(By.xpath(strTextareaDescrip)).typeAndEnter(strDescripCierre);
+	
+	getDriver().switchTo().defaultContent();
+	
+	getDriver().findElement(By.xpath(btnGuardarPant)).click();
+	waitFor(5).second();
+	  //utilidad.esperaDesaparecer();
+		}
+        
+        
+        catch(Exception ex){
+     	   System.out.println(ex.getMessage()+"");  
+        }	
+		}
+	
 	
 }

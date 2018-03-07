@@ -14,7 +14,6 @@ public class NuevoOportunidadSteps {
     public void crearNuevaOportunidad(String cuenta, String nombre, String tipoVenta, String fechaEstimadaVenta, String probabilidadExito, String fechaEstimadaIngreso, String tipoOportunidad, String contratoMeses) {
 		nuevoOportunidadPage.inputCuenta(cuenta);
 		nuevoOportunidadPage.inputNombre(nombre); 
-		
 		nuevoOportunidadPage.listTipoVenta(tipoVenta);
 		nuevoOportunidadPage.inputFechaEstimadaVenta(fechaEstimadaVenta);
 		nuevoOportunidadPage.listProbabilidadExito(probabilidadExito);

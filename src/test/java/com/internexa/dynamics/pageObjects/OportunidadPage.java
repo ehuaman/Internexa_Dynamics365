@@ -70,7 +70,7 @@ public class OportunidadPage extends PageObject{
                       element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div[1]")).getText();
                       intCatidadElementos=TheTable.getRowElements().size();
                      
-                      if (element.equals("No")) {
+                      if (element.equals("No") || element.equals("Não") ) {
                             // System.out.println(find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]")).getText());
                              find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]/nobr/a/li/span/span/span[2]")).click();
                              waitFor(3).second();

@@ -16,6 +16,7 @@ public class LlenarPropiedades extends PageObject {
 	    	  waitFor(1).seconds();
 	    	getDriver().findElement(By.xpath("//INPUT[@id='itx_valordecimal_i']")).sendKeys(datoPropiedad);
 	    	Serenity.takeScreenshot();
+	 
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }

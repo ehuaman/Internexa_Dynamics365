@@ -1,25 +1,15 @@
 package com.internexa.dynamics.pageObjects;
 
-import java.util.List;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumhq.jetty9.util.log.Log;
-import com.internexa.dynamics.HtmlTable;
 import com.internexa.dynamics.toolBox.Utilidad;
-
-import cucumber.api.java.it.Date;
+import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
 import net.serenitybdd.core.annotations.findby.By;
 
 import net.serenitybdd.core.pages.PageObject;
 
 public class NuevoOportunidadPage extends PageObject {
 	Utilidad utilidad;
+	GuardarCerrarToolBox guardarCerrrarToolBox;
 	
 	String idOportunidad= new String();
 	static String NombreOportunidad;
@@ -165,7 +155,8 @@ public class NuevoOportunidadPage extends PageObject {
 	
 	public String btnGuardar() {
         try{
-           getDriver().findElement(By.xpath("//SPAN[@tabindex='-1'][text()=' Guardar ']")).click();
+           //getDriver().findElement(By.xpath("//SPAN[@tabindex='-1'][text()=' Guardar ']")).click();
+        	guardarCerrrarToolBox.btnGuardar();
            waitFor(4).seconds();
            while (idOportunidad==null||idOportunidad.isEmpty()) {             
                   getDriver().switchTo().frame("contentIFrame1");

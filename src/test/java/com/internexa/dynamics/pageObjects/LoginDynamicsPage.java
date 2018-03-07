@@ -48,14 +48,14 @@ public class LoginDynamicsPage extends PageObject{
 		
 		if(findBy(lblPassOtros).isCurrentlyVisible()) {
 			find(By.xpath(lblPassOtros)).sendKeys(strPass);
-			waitFor(3).seconds();
+			waitFor(2).seconds();
 			Serenity.takeScreenshot();	
 		}
 		
 		else
 		{
 			find(By.name("passwd")).sendKeys(strPass);
-			waitFor(3).seconds();
+			waitFor(2).seconds();
 			Serenity.takeScreenshot();
 		}
 	}
@@ -82,7 +82,7 @@ public class LoginDynamicsPage extends PageObject{
 	}
 	
 	//id="butBegin"
-	public void btnMsjeCorreo() {
+	/*public void btnMsjeCorreo() {
 
 		if(findBy("//*[@id='InlineDialog']").isCurrentlyVisible()){
 			getDriver().switchTo().frame("InlineDialog_Iframe");
@@ -103,7 +103,7 @@ public class LoginDynamicsPage extends PageObject{
 			find(By.id("idSIButton9")).waitUntilClickable();
 			find(By.id("idSIButton9")).click();	
 		}
-	}
+	}*/
 
 
 

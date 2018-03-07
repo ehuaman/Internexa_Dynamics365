@@ -46,12 +46,12 @@ public String numeroFactibilidad;
 	public void AgregarFactibilidad() {
 		try{ 
             getDriver().switchTo().frame(nombreFrame+"1");
-            waitFor(1).seconds();
+            waitFor(3).seconds();
 			find(By.xpath(contineFactibilidades)).waitUntilVisible();
 			find(By.xpath(contineFactibilidades)).waitUntilEnabled();
 			find(By.xpath(contineFactibilidades)).click();
 			
-			waitFor(1).seconds();
+			waitFor(2).seconds();
             getDriver().findElement(By.xpath(btnFactibilidad)).click();
           //hasta que desaparesca
 	        utilidad.esperaDesaparecer();
@@ -77,12 +77,12 @@ public String numeroFactibilidad;
             robot.keyPress(KeyEvent.VK_F2);
             find(By.xpath(lblDigitaIPS)).typeAndEnter(nombreIPS);
 
-            waitFor(1).seconds();
+            waitFor(2).seconds();
 
             getDriver().findElement(By.xpath("//*[@id='itx_systemuserid_IMenu']/li/a[contains(.,'"+nombreIPS.toUpperCase()+"')]")).click();
 	   	        Serenity.takeScreenshot();
 	       
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }
@@ -97,9 +97,9 @@ public String numeroFactibilidad;
 	    	waitFor(1).seconds();
 	        Serenity.takeScreenshot();
 	        getDriver().switchTo().defaultContent();
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	        GuardarFactibilidad();
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }
@@ -110,13 +110,13 @@ public String numeroFactibilidad;
 	public void GuardarFactibilidad() {
 	    try {
 	    	
-	    	
+	    	waitFor(2).seconds();
 	    	find(By.xpath(btnGrabarFactibilidad)).click();
 	        Serenity.takeScreenshot(); 
 	        utilidad.esperaDesaparecer();
-	        waitFor(1).seconds();
+	        waitFor(3).seconds();
 	        getDriver().switchTo().frame(nombreFrame+"1");
-            waitFor(1).seconds();
+            waitFor(2).seconds();
 	        find(By.xpath(divAreaFactibilidad)).waitUntilVisible();
 			find(By.xpath(divAreaFactibilidad)).waitUntilEnabled();
 			find(By.xpath(divAreaFactibilidad)).click();
@@ -167,68 +167,24 @@ public String numeroFactibilidad;
 			 find(By.id(nombreFrame+"0")).waitUntilVisible();
 		        getDriver().switchTo().frame(nombreFrame+"0");
 		        
-		        waitFor(1).seconds();
+		        waitFor(2).seconds();
 		        
 		        find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]/div/div[1]/div[1]")).click();
 				element=find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]//div/div[1]/div[1]/div/div[1]")).getTextValue();
 				
 				if (element.contentEquals("No")) {
-					find(By.xpath("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]")).click();
-					utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]");
+					find(By.xpath("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[3]")).click();
+					utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[3]");
 					waitFor(1).seconds();
 					//Web Detalles generales
 					find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
 					getDriver().switchTo().defaultContent();
-					//*[@id="contentIFrame0"]
-					
-					
+
 				}
-				
-		       
-		      //*[@id="Gridccc5e8fd-d591-a054-a518-cf9e23a1302a_component"]/div/div[1]
-		      //*[@id="Gridccc5e8fd-d591-a054-a518-cf9e23a1302a_component"]/div/div[1]/div[1]/div[1]
-		      //*[@id="Gridccc5e8fd-d591-a054-a518-cf9e23a1302a_component"]/div/div[1]/div[1]/div[4]/div[1]/div/div/div/input
-		        
-		        //WebElement table = getDriver().findElement(By.id("gridBodyTable")); 
-			 
-			/* if (idOportunidad.substring(0, 4)=="OPR" || idOportunidad.substring(0, 4)=="FAC" ){
-				
-				 find(By.xpath("//*[@id='crmGrid_findCriteria']")).sendKeys(idOportunidad);
-				
-				 find(By.xpath("//*[@id='gridBodyTable']/tbody/tr/td[2]/nobr")).click();
-				 dobleClick("//*[@id='gridBodyTable']/tbody/tr/td[2]/nobr");
-			 }
-			 else
-			 {
-		        HtmlTable TheTable = new HtmlTable(table);
-		        int i=1;
-		        boolean found = true;
-		        do {
-		               // Campo ID DE OPORTUNIDAD
-		               System.out.println("row " +i);
-		               element = find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[2]/nobr/span")).getText();
-		               							//*[@id="gridBodyTable"]/tbody/tr[1]/td[3]/nobr
-		               							//*[@id="gridBodyTable_primaryField_{8FE6C5F0-6E16-E811-810E-E0071B6E8DC1}_0"]
-		           
-		               							//*[@id="gridBodyTable"]/tbody/tr[1]/td[2]/nobr/span
-		               if (element.equals(idOportunidad)) {                               
-		                      found=false;
-		               } else { 
-		            	   i++;                              
-		               }                   
-		        }while(i<=TheTable.getRowElements().size() && found );
-		        
-		        // Actions recibe un web element al que se le ejecutara una accion.
-		        Actions act = new Actions(getDriver()); 
-		        // Se selecciona la primer columna de la tabla (CHECKBOX) para realizar doble click
-		        WebElement checkItem = getDriver().findElement(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[1]")); 
-		        checkItem.click();                
-		        // Accion dobleclic se le envia el webElement               
-		        act.doubleClick(checkItem).build().perform();
-			 }*/
-		        waitFor(1).seconds();
+
+		        waitFor(2).seconds();
 		        getDriver().switchTo().defaultContent();
-		        waitFor(1).seconds();
+		        waitFor(2).seconds();
 		 } catch (Exception ex) {
 		        System.out.println(ex.getMessage() + "");
 		 }
@@ -240,10 +196,10 @@ public String numeroFactibilidad;
 	    try {    
 	    	utilidad.esperaDesaparecer();
 	    	find(By.xpath("//*[@id=\"itx_factibilidad|NoRelationship|Form|itx.itx_factibilidad.Button.EnviarSolicitudFactibilidad\"]")).click();
-	    	waitFor(1).seconds();
+	    	waitFor(2).seconds();
 	        Serenity.takeScreenshot();
 	        getDriver().switchTo().alert().accept();
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }    
@@ -253,7 +209,7 @@ public String numeroFactibilidad;
 	    try {    
 	    	getDriver().navigate().refresh();
 			getDriver().switchTo().frame(nombreFrame+"0");
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
 	    	waitFor(1).seconds();
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
@@ -272,8 +228,7 @@ public String numeroFactibilidad;
                 element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[5]/nobr")).getText();
                 element2 = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr")).getText();
                 intCatidadElementos=TheTable.getRowElements().size();
-                	//if (element.equals(NuevoOportunidadPage.NombreOportunidad))
-                //if (element.equals(element) && element2.equals("Solicitud de factibilidad"))
+             
                 if (element.equals(NuevoOportunidadPage.NombreOportunidad) && element2.equals("Solicitud de factibilidad")) {
                        utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr");
                        salirDo="OK";
@@ -293,7 +248,7 @@ public String numeroFactibilidad;
 	    	getDriver().switchTo().parentFrame();
 	    	getDriver().switchTo().defaultContent();
 	        
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	       
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
@@ -303,16 +258,16 @@ public String numeroFactibilidad;
 	public void cambioEstadoFactibilidad() {
 	    try {    
 	    	getDriver().switchTo().frame(nombreFrame+"0");
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	      //*[@id='itx_estadodelproducto']/div[1]
 	        find(By.xpath("//*[@id='itx_estadodelproducto']/div[1]")).click();
 	        getDriver().findElement(By.xpath("//*[@id='itx_estadodelproducto_i']/option[2]")).click();
-	        waitFor(1).seconds(); 
+	        waitFor(2).seconds(); 
 	        getDriver().switchTo().defaultContent();
 	        
 	    	guardarCerrarToolBox.btnGuardarCerrar();
 
-	        waitFor(1).seconds();
+	        waitFor(2).seconds();
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
 	    }    
