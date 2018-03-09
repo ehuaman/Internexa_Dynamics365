@@ -6,9 +6,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import com.internexa.dynamics.HtmlTable;
 import com.internexa.dynamics.toolBox.Utilidad;
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
@@ -22,7 +19,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 
 
 public class GanarPerderOfertaPage extends PageObject {
-	Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
+	
+	BuscarProductoPage buscarProductoPage;
 	NuevoOportunidadPage nuevoOportunidadPage;
 	Utilidad utilidad;
 	GuardarCerrarToolBox guardarCerrarToolBox;
@@ -407,7 +405,7 @@ public class GanarPerderOfertaPage extends PageObject {
 			String element = new String();
 			String parentWindowHandler = getDriver().getWindowHandle(); // Almacena tu ventana actual
 			String subWindowHandler = null;
-			
+			String strActivarCampo="NO";
 			
 			//find(By.id(nombreFrame+"0")).setWindowFocus();
 			getDriver().switchTo().frame(nombreFrame+"1");
@@ -441,10 +439,14 @@ public class GanarPerderOfertaPage extends PageObject {
                        
                        find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
                        getDriver().navigate().refresh();
-       					producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", strSitioA);
+                       
+                       buscarProductoPage.seleccionProdFact(strSitioA);
+       					
                        waitFor(2).second();
                        guardarCerrarToolBox.btnGuardarCerrar();
-                }     
+                }
+                else { strActivarCampo="OK";
+                    	   }     
                 
                 getDriver().switchTo().defaultContent();
                 getDriver().close();
@@ -456,7 +458,10 @@ public class GanarPerderOfertaPage extends PageObject {
 				getDriver().switchTo().frame(nombreFrame+"1");
 				getDriver().findElement(By.xpath("//*[@id='quote_divDataArea']/div/table/tbody/tr/td[3]/nobr")).click();
 				waitFor(2).second();
-				//getDriver().findElement(By.xpath("//*[@id=\"Observaciones comerciales_label\"]")).click();
+				if (strActivarCampo.equals("OK"))
+				{
+					getDriver().findElement(By.xpath("//*[@id=\"Observaciones comerciales_label\"]")).click();
+				}
 				getDriver().findElement(By.xpath("//textarea[@id=\"description_i\"]")).sendKeys("Ejecuta2123");
 
 				//SeleccionarContactoTecnico(strContactoTec);

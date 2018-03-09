@@ -45,7 +45,7 @@ public String numeroFactibilidad;
 	
 	public void AgregarFactibilidad() {
 		try{ 
-            getDriver().switchTo().frame(nombreFrame+"1");
+			 utilidad.buscarIngresarFrame(nombreFrame);
             waitFor(3).seconds();
 			find(By.xpath(contineFactibilidades)).waitUntilVisible();
 			find(By.xpath(contineFactibilidades)).waitUntilEnabled();
@@ -115,7 +115,7 @@ public String numeroFactibilidad;
 	        Serenity.takeScreenshot(); 
 	        utilidad.esperaDesaparecer();
 	        waitFor(3).seconds();
-	        getDriver().switchTo().frame(nombreFrame+"1");
+	        utilidad.buscarIngresarFrame(nombreFrame);
             waitFor(2).seconds();
 	        find(By.xpath(divAreaFactibilidad)).waitUntilVisible();
 			find(By.xpath(divAreaFactibilidad)).waitUntilEnabled();
@@ -164,8 +164,8 @@ public String numeroFactibilidad;
 			 ArrayList<String> tabs2 = new ArrayList<String> (getDriver().getWindowHandles());
 			 getDriver().switchTo().window(tabs2.get(1));
 
-			 find(By.id(nombreFrame+"0")).waitUntilVisible();
-		        getDriver().switchTo().frame(nombreFrame+"0");
+			 //find(By.id(nombreFrame+"0")).waitUntilVisible();
+			 utilidad.buscarIngresarFrame(nombreFrame);
 		        
 		        waitFor(2).seconds();
 		      
@@ -189,9 +189,7 @@ public String numeroFactibilidad;
 		        System.out.println(ex.getMessage() + "");
 		 }
 	}
-	
-	
-	
+
 	public void SolicitarFactibilidad() {
 	    try {    
 	    	utilidad.esperaDesaparecer();
@@ -208,7 +206,7 @@ public String numeroFactibilidad;
 	public void buscarCorreoAprobar() {
 	    try {    
 	    	getDriver().navigate().refresh();
-			getDriver().switchTo().frame(nombreFrame+"0");
+	    	 utilidad.buscarIngresarFrame(nombreFrame);
 	        waitFor(2).seconds();
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
 	    	waitFor(1).seconds();
@@ -238,7 +236,7 @@ public String numeroFactibilidad;
          }while(i<=intCatidadElementos && salirDo.equals("No")) ;
 	    	
 	    	getDriver().switchTo().defaultContent();
-	    	getDriver().switchTo().frame(nombreFrame+"1");
+	    	 utilidad.buscarIngresarFrame(nombreFrame);
 	    		find(By.xpath("//*[@id=\"Email_content\"]/div[1]/div[2]")).click();
 	    	Serenity.takeScreenshot();
 	    	
@@ -257,7 +255,7 @@ public String numeroFactibilidad;
 	
 	public void cambioEstadoFactibilidad() {
 	    try {    
-	    	getDriver().switchTo().frame(nombreFrame+"0");
+	    	 utilidad.buscarIngresarFrame(nombreFrame);
 	        waitFor(2).seconds();
 	      //*[@id='itx_estadodelproducto']/div[1]
 	        find(By.xpath("//*[@id='itx_estadodelproducto']/div[1]")).click();

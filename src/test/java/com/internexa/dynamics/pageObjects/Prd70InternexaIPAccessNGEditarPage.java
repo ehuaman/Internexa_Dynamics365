@@ -92,10 +92,10 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	           	else if (intColumna==9) {     
+	           	else if (intColumna==13) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
 	            		}
-	        	
+		           
 	               waitFor(1).second();
 	               getDriver().switchTo().defaultContent();
 	               waitFor(1).seconds();

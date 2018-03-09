@@ -12,7 +12,6 @@ import com.internexa.dynamics.steps.NuevoOportunidadSteps;
 import com.internexa.dynamics.steps.OportunidadSteps;
 import com.internexa.dynamics.steps.CerrarSesionSteps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -52,10 +51,11 @@ public class LoginDynamicsDefinition {
 	GanarPerderOfertaSteps ganarPerderOfertaSteps;
 	
 	@Given("^me logueo al aplicativo Dynamics como \"([^\"]*)\" con pass \"([^\"]*)\"$")
-	public void me_logueo_al_aplicativo_Dynamics_como_con_pass(String strUsuario, String strPass) throws Throwable {
+	public void me_logueo_al_aplicativo_Dynamics_como_con_pass(String strUsuario, String strPass) {
 	    // Write code here that turns the phrase above into concrete actions
 		loginDynamicsSteps.login_dynamics(strUsuario, strPass);
 	}
+
 
 	@Given("^elijo Ventas luego Oportunidades$")
 	public void elijo_Ventas_luego_Oportunidades() throws Throwable {
@@ -135,36 +135,41 @@ public void se_detallan_datos_de_factibilidad_IPS_Observacion(String strIPS, Str
 		factibilidadSteps.evaluacionAprFactibilidad(Dato01);
 	}
 
-@When("^elijo Ventas luego Factibilidad$")
-public void elijo_Ventas_luego_Factibilidad() throws Exception {
-    // Write code here that turns the phrase above into concrete actions
-	menuOportunidadSteps.ingresarFactibilidad();
-}
-
-@Then("^se busca factibilidad estado Finalizada$")
-public void se_busca_factibilidad_estado_Finalizada() throws Exception {
-    // Write code here that turns the phrase above into concrete actions
-	ganarPerderOfertaSteps.buscarFactibilidad();
-}
-
-@Then("^generar Oferta$")
-public void generar_Oferta() throws Exception {
-    // Write code here that turns the phrase above into concrete actions
-	ganarPerderOfertaSteps.generarOferta();
-}
-
-@Then("^Ingresar datos de IPS \"([^\"]*)\" y Contacto Tecnico \"([^\"]*)\"$")
-public void ingresar_datos_de_IPS_y_Contacto_Tecnico(String strIPS, String strTecnico) throws Exception {
-    // Write code here that turns the phrase above into concrete actions
-	ganarPerderOfertaSteps.IngresarIPSyTecnico(strIPS,strTecnico);
-}
-
-@Then("^se ingresa \"([^\"]*)\" con Motivo:\"([^\"]*)\" y Descripcion: \"([^\"]*)\"$")
-public void se_ingresa_con_Motivo_y_Descripcion(String strGanarPerder, String strMotivo, String strDescrip) throws Exception {
-    // Write code here that turns the phrase above into concrete actions
-	ganarPerderOfertaSteps.seleccionarGanarPerder( strGanarPerder,  strMotivo,  strDescrip);
-}
-
+	@When("^elijo Ventas luego Factibilidad$")
+	public void elijo_Ventas_luego_Factibilidad() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		menuOportunidadSteps.ingresarFactibilidad();
+	}
+	
+	@Then("^se busca factibilidad estado Finalizada$")
+	public void se_busca_factibilidad_estado_Finalizada() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		ganarPerderOfertaSteps.buscarFactibilidad();
+	}
+	
+	@Then("^generar Oferta$")
+	public void generar_Oferta() throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		ganarPerderOfertaSteps.generarOferta();
+	}
+	
+	@Then("^Ingresar datos de IPS \"([^\"]*)\" y Contacto Tecnico \"([^\"]*)\"$")
+	public void ingresar_datos_de_IPS_y_Contacto_Tecnico(String strIPS, String strTecnico) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		ganarPerderOfertaSteps.IngresarIPSyTecnico(strIPS,strTecnico);
+	}
+	
+	@Then("^se ingresa \"([^\"]*)\" con Motivo:\"([^\"]*)\" y Descripcion: \"([^\"]*)\"$")
+	public void se_ingresa_con_Motivo_y_Descripcion(String strGanarPerder, String strMotivo, String strDescrip) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		ganarPerderOfertaSteps.seleccionarGanarPerder( strGanarPerder,  strMotivo,  strDescrip);
+	}
+	
+	@Then("^se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A \"([^\"]*)\" ingresa datos de IPS \"([^\"]*)\" y Contacto Tecnico \"([^\"]*)\" ganar \"([^\"]*)\" con Motivo:\"([^\"]*)\" y Descripcion: \"([^\"]*)\"$")
+	public void se_ingresa_a_crear_la_oferta_Express_se_ingresa_y_se_llenan_datos_requeridos_Sitio_A_ingresa_datos_de_IPS_y_Contacto_Tecnico_ganar_con_Motivo_y_Descripcion(String strSitioA, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) throws Exception {
+	    // Write code here that turns the phrase above into concrete actions
+		ganarPerderOfertaSteps.ganarPerderExpress( strSitioA,  strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	}
 
 
 	

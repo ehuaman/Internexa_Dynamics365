@@ -1,5 +1,6 @@
 package com.internexa.dynamics.steps;
 
+import com.internexa.dynamics.pageObjects.BuscarProductoPage;
 import com.internexa.dynamics.pageObjects.FactibilidadPage;
 import com.internexa.dynamics.pageObjects.Producto40LASTMILENACIONALEditarPage;
 
@@ -8,6 +9,7 @@ import net.thucydides.core.annotations.Step;
 
 public class FactibilidadSteps  {
 	FactibilidadPage factibilidadPage;
+	BuscarProductoPage buscarProductoPage;
 	Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
 	
 	
@@ -36,7 +38,8 @@ public class FactibilidadSteps  {
 	public void evaluacionAprFactibilidad(String Dato01) {
 		
 		factibilidadPage.productoEvaluacion();
-		producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", Dato01);
+		buscarProductoPage.seleccionProdFact(Dato01);
+		//producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", Dato01);
 		factibilidadPage.cambioEstadoFactibilidad();
 		
 	}

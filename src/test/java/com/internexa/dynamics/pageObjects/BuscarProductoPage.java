@@ -30,7 +30,24 @@ public class BuscarProductoPage extends PageObject {
 			
 		}
 	}
-	
+	public void seleccionProdFact(String Dato1) {
+		//Internexa Last Mile Nacional
+		if (OportunidadPage.codigoProductoRegistar.equals("40")) {
+			producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "",  "", "",Dato1);
+		}
+		//Internexa IP Access NG
+		else if (OportunidadPage.codigoProductoRegistar.equals("70")) {
+			prd70InternexaIPAccessNGEditarPage.encontrarOportunidad("", "", Dato1);
+		}
+		//Internexa Carrier Ethernet Nacional punto a punto
+		else if (OportunidadPage.codigoProductoRegistar.equals("37")) {
+					
+		}
+		//IaaS
+		else if (OportunidadPage.codigoProductoRegistar.equals("300")) {
+			
+		}
+	}
 	
 	
 }
