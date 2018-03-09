@@ -18,6 +18,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.seleniumhq.jetty9.util.log.Log;
 import com.internexa.dynamics.HtmlTable;
 
+//FECHA
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Utilidad extends PageObject {
 	String imgEsperar = "//*[@id='DialogLoadingDivImg']";
 	
@@ -30,7 +35,7 @@ public class Utilidad extends PageObject {
 	
 	public void esperaDesaparecer() {
 		waitForAbsenceOf(imgEsperar);
-	}
+	}	
 	
 	public void mouseClickByLocator( String cssLocator ) {
 	     String locator = cssLocator;
@@ -77,6 +82,53 @@ public class Utilidad extends PageObject {
 		 }
 	}
 	//*[@id="itx_factibilidad"]
-	
-	
+	public String fechaHHmmss () {
+		
+		Date date = new Date();
+		//Caso 1: obtener la hora y salida por pantalla con formato:
+		//DateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+		//System.out.println("Hora: "+hourFormat.format(date));
+		//Caso 2: obtener la fecha y salida por pantalla con formato:
+		//DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		//System.out.println("Fecha: "+dateFormat.format(date));
+		//Caso 3: obtenerhora y fecha y salida por pantalla con formato:
+		DateFormat hourdateFormat = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		
+		return hourdateFormat.format(date);
+
+		}
+	public void esperarObjeto (WebElement  xpathElemento) {
+		
+		try{ 
+		WebDriverWait wait = new WebDriverWait(getDriver(), 5);
+		wait.until(ExpectedConditions.visibilityOf(xpathElemento));
+		}
+        
+        catch(Exception ex){                    
+        	 System.out.println(ex.getMessage()+"");  
+        }
+		
+		}
+	public void buscarIngresarFrame (String nombreFrame) {
+		
+		try{ 
+			getDriver().switchTo().frame(nombreFrame+"1");
+		}
+        
+        catch(Exception ex){                    
+        	getDriver().switchTo().frame(nombreFrame+"0");
+        }
+		
+		}
+	public void focusFrame (String nombreFrame) {
+		
+		try{ 
+			find(By.id(nombreFrame+"1")).setWindowFocus();
+		}
+        
+        catch(Exception ex){                    
+        	find(By.id(nombreFrame+"0")).setWindowFocus();
+        }
+		
+		}
 }

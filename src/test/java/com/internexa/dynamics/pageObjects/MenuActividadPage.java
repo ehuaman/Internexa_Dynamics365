@@ -1,13 +1,16 @@
 package com.internexa.dynamics.pageObjects;
 
+import com.internexa.dynamics.toolBox.Utilidad;
+
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
 public class MenuActividadPage extends PageObject {
-	
+	Utilidad utilidad;
 	public void misActividades() {
 		getDriver().navigate().refresh();
 		getDriver().switchTo().frame("contentIFrame0");
+		
         waitFor(2).seconds();
 		//*[@id="crmGrid_SavedNewQuerySelector"]/span[1]
 		find(By.id("crmGrid_SavedNewQuerySelector")).waitUntilVisible();

@@ -4,8 +4,9 @@ import org.openqa.selenium.support.ui.Select;
 import com.internexa.dynamics.toolBox.Utilidad;
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
 import net.serenitybdd.core.annotations.findby.By;
-
+import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 
 public class NuevoOportunidadPage extends PageObject {
 	Utilidad utilidad;
@@ -13,15 +14,19 @@ public class NuevoOportunidadPage extends PageObject {
 	
 	String idOportunidad= new String();
 	static String NombreOportunidad;
+	@FindBy(xpath="//input[@id='parentaccountid_ledit']")
+	public WebElementFacade ingresaCuenta;
+	String nombreFrame="contentIFrame";
 		
 	public void inputCuenta(String strCuenta) {
 		try{ 
 			
-			getDriver().switchTo().frame("contentIFrame1");
-            waitFor(2).seconds();
-            //getDriver().findElement(By.xpath("//*[@id=\"parentaccountid\"]/div[1]")).click();
-            //waitFor(1).seconds();
-            getDriver().findElement(By.xpath("//input[@id='parentaccountid_ledit']")).sendKeys(strCuenta);
+			utilidad.buscarIngresarFrame(nombreFrame);			
+			//getDriver().switchTo().frame("contentIFrame1");
+            //waitFor(2).seconds();
+            utilidad.esperarObjeto(ingresaCuenta);
+           
+            ingresaCuenta.sendKeys(strCuenta);
             waitFor(1).seconds();
             getDriver().switchTo().defaultContent();
             waitFor(1).seconds();
@@ -35,10 +40,10 @@ public class NuevoOportunidadPage extends PageObject {
 	public void inputNombre(String strNombre) {
 		try{
 			String HoraIngreso;
-			HoraIngreso=utilidad.FechaHHmmss();
+			HoraIngreso=utilidad.fechaHHmmss();
 			
             getDriver().switchTo().frame("contentIFrame1");
-            waitFor(2).seconds();
+            waitFor(1).seconds();
          
             getDriver().findElement(By.xpath("//*[@id=\"name\"]/div[1]")).click();
             waitFor(1).seconds();
@@ -58,7 +63,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void listTipoVenta(String strTipoVenta) {
 		try{
 			getDriver().switchTo().frame("contentIFrame1");
-	        waitFor(2).seconds();
+	        waitFor(1).seconds();
 			getDriver().findElement(By.xpath("//*[@id='itx_tipodeventa']/div[1]")).click();
 	        waitFor(1).seconds();
 	        new Select(getDriver().findElement(By.id("itx_tipodeventa_i"))).selectByVisibleText(strTipoVenta);
@@ -75,7 +80,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void inputFechaEstimadaVenta(String strFechaEstimadaVenta) {
 		try{
             getDriver().switchTo().frame("contentIFrame1");
-            waitFor(2).seconds();
+            waitFor(1).seconds();
             getDriver().findElement(By.xpath("//*[@id='estimatedclosedate']/div[1]")).click();
             waitFor(1).seconds();
             getDriver().findElement(By.xpath("//INPUT[@id='estimatedclosedate_iDateInput']")).sendKeys(strFechaEstimadaVenta);
@@ -91,7 +96,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void listProbabilidadExito(String strProbabilidadExito) {
 		try{
 			getDriver().switchTo().frame("contentIFrame1");
-	        waitFor(2).seconds();
+	        waitFor(1).seconds();
 			getDriver().findElement(By.xpath("//*[@id=\"itx_probabilidaddeexito\"]/div[1]")).click();
 	        waitFor(1).seconds();
 	        new Select(getDriver().findElement(By.id("itx_probabilidaddeexito_i"))).selectByVisibleText(strProbabilidadExito);
@@ -107,7 +112,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void inputFechaEstimadaIngreso(String strFechaEstimadaIngreso) {
 		try{
             getDriver().switchTo().frame("contentIFrame1");
-            waitFor(2).seconds();
+            waitFor(1).seconds();
             getDriver().findElement(By.xpath("//*[@id=\"itx_fechaestimadaingreso\"]/div[1]")).click();
             waitFor(1).seconds();
             getDriver().findElement(By.xpath("//INPUT[@id='itx_fechaestimadaingreso_iDateInput']")).sendKeys(strFechaEstimadaIngreso);
@@ -124,7 +129,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void listTipoOportunidad(String strlistTipoOportunidad) {
 		try{
 			getDriver().switchTo().frame("contentIFrame1");
-	        waitFor(2).seconds();
+	        waitFor(1).seconds();
 			getDriver().findElement(By.xpath("//*[@id=\"itx_tipooportunidad\"]/div[1]")).click();
 	        waitFor(1).seconds();
 	        new Select(getDriver().findElement(By.id("itx_tipooportunidad_i"))).selectByVisibleText(strlistTipoOportunidad);
@@ -140,7 +145,7 @@ public class NuevoOportunidadPage extends PageObject {
 	public void inputContratoMeses(String strContratoMeses) {
 		try{
             getDriver().switchTo().frame("contentIFrame1");
-            waitFor(2).seconds();
+            waitFor(1).seconds();
             getDriver().findElement(By.xpath("//*[@id=\"itx_contratoameses\"]/div[1]")).click();
             waitFor(1).seconds();
             getDriver().findElement(By.xpath("//INPUT[@id='itx_contratoameses_i']")).sendKeys(strContratoMeses);
@@ -157,7 +162,7 @@ public class NuevoOportunidadPage extends PageObject {
         try{
            //getDriver().findElement(By.xpath("//SPAN[@tabindex='-1'][text()=' Guardar ']")).click();
         	guardarCerrrarToolBox.btnGuardar();
-           waitFor(4).seconds();
+           waitFor(2).seconds();
            while (idOportunidad==null||idOportunidad.isEmpty()) {             
                   getDriver().switchTo().frame("contentIFrame1");
                   waitFor(1).seconds();

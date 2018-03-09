@@ -12,11 +12,11 @@ import org.junit.runner.RunWith;
 //@CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/LoginDynamics.feature", tags = "@GeneraOferta")
 //Caso Producto 40 Internexa Last Mile Nacional
 	//Caso de prueba Proyecto y Aprobación de Factibilidad
-		@CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/LoginDynamics.feature", tags = "@CPOportunidadProyecto")
+	//	@CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/LoginDynamics.feature", tags = "@CPOportunidadProyecto")
 	//Caso de prueba Solución y Aprobación de Factibilidad
 	   //@CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/LoginDynamics.feature", tags = "@CPOportunidadSolucion")
 	//Caso de prueba Express
-	  //@CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/LoginDynamics.feature", tags = "@CPOportunidadExpres")
+	  @CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/CasosGanarOferta.feature", tags = "@CPOportunidadExpres")
 
 
 

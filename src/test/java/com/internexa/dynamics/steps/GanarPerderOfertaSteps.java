@@ -23,5 +23,9 @@ public class GanarPerderOfertaSteps  {
 	public void seleccionarGanarPerder(String strGanarPerder, String strMotivo, String strDescrip) {
 		ganarPerderOfertaPage.EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
 	}
+	
+	public void ganarPerderExpress(String strSitioA, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
+		ganarPerderOfertaPage.IngresarOfertaExpress( strSitioA,  strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	}
 
 }
