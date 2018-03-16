@@ -1,5 +1,7 @@
 package com.internexa.dynamics.pageObjects;
 
+import static org.junit.Assert.fail;
+
 import org.openqa.selenium.support.ui.Select;
 import com.internexa.dynamics.toolBox.Utilidad;
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
@@ -33,6 +35,7 @@ public class NuevoOportunidadPage extends PageObject {
            }
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }
 	}
 	
@@ -56,6 +59,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
             System.out.println(ex.getMessage()+"");
+            fail();
            }
 	}
 
@@ -73,6 +77,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");
+        	   fail();
            }
 		}
 	
@@ -90,6 +95,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
             System.out.println(ex.getMessage()+"");
+            fail();
            }
 	}
 
@@ -105,6 +111,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");
+        	   fail();
            }
 	}
 	
@@ -122,6 +129,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");
+        	   fail();
            }
 	}
 	
@@ -139,6 +147,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
             System.out.println(ex.getMessage()+"");
+            fail();
            }
 	}
 	
@@ -155,6 +164,7 @@ public class NuevoOportunidadPage extends PageObject {
 			}
            catch(Exception ex){
             System.out.println(ex.getMessage()+"");
+            fail();
            }
 		}
 	
@@ -174,7 +184,8 @@ public class NuevoOportunidadPage extends PageObject {
 	               }  
 	        }
 	        catch(Exception ex){                    
-	        	System.out.println(ex.getMessage()+"");               
+	        	System.out.println(ex.getMessage()+"");
+	        	 fail();
 	        }
 	        return idOportunidad;
 		  }

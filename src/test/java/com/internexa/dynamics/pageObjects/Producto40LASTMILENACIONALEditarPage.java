@@ -1,5 +1,7 @@
 package com.internexa.dynamics.pageObjects;
 
+import static org.junit.Assert.fail;
+
 import com.internexa.dynamics.HtmlTable;
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
 import com.internexa.dynamics.toolBox.Utilidad;
@@ -23,13 +25,16 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	      String valorElemento = new String();
 	      
 		 try {
+			
+			 if (propiedadSitioA.equals("")) {
+				 getDriver().switchTo().frame("contentIFrame"+"1");
+			 }
+			 else
+			 {
+				 getDriver().switchTo().frame("contentIFrame"+"0");
+			 }
 			 
-			 if (propiedadSitioA.contentEquals("")) {
-				 getDriver().switchTo().frame("contentIFrame1");
-			 }
-			 else {
-				 getDriver().switchTo().frame("contentIFrame0");
-			 }
+			 //utilidad.buscarIngresarFrame("contentIFrame");
 			
 	        waitFor(2).seconds();
 	     
@@ -45,12 +50,18 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
                if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
             	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,propiedadSitioA);
-            	   if (propiedadSitioA.contentEquals("")) {
-      				 	getDriver().switchTo().frame("contentIFrame1");
-		      		}
-		      			 else {
-		      				 getDriver().switchTo().frame("contentIFrame0");
-		      			 		}
+            	   
+            	   if (propiedadSitioA.equals("")) {
+      				 getDriver().switchTo().frame("contentIFrame"+"1");
+      			 }
+      			 else
+      			 {
+      				 getDriver().switchTo().frame("contentIFrame"+"0");
+      			 }
+      			 
+            	   
+            	   //utilidad.buscarIngresarFrame("contentIFrame");
+            	   
             	   HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
             	   TheTable=TheTable1;
             	   i++;
@@ -66,6 +77,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 		            waitFor(2).seconds();
 		 	}catch (Exception ex) {
 		        System.out.println(ex.getMessage() + "");
+		        fail();
 			 }
 	 	}
 	 
@@ -74,8 +86,6 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	 * @param intColumna
 	 * @param propiedadCapacidad
 	 * @param propiedadCiudadA
-	 * @param propiedadCiudadB
-	 * @param propiedadDireccion
 	 * //ingresa los valores de cada una de las Propiedades faltantes en el producto
 	   //Tener en cuenta que los nombres de Ciudades tienen que tener tildes si corresponde
 	        	
@@ -94,7 +104,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
 	        	if (intColumna == 1) {
-	        		llenarPropiedades.Capacidad(propiedadCapacidad);
+	        		llenarPropiedades.ValorDecimal(propiedadCapacidad);
 	        		}
 	            else if (intColumna==5 ) {
 	             	
@@ -104,7 +114,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	            		llenarPropiedades.Ciudad(propiedadCiudadB);
 	            	}
 	            		else if (intColumna==8) {     
-	            			llenarPropiedades.DireccionPunta(propiedadDireccion);
+	            			llenarPropiedades.ValorPropiedad(propiedadDireccion);
 	            		}
 	            		else if (intColumna==9) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
@@ -118,6 +128,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	               
 	        }catch (Exception ex) {
 	               System.out.println(ex.getMessage() + "");
+	               fail();
 	        }
 	  }
 	 

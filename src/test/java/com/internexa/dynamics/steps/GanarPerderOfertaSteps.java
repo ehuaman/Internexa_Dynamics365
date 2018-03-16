@@ -14,8 +14,8 @@ public class GanarPerderOfertaSteps  {
 		ganarPerderOfertaPage.CrearOferta();
 		ganarPerderOfertaPage.OportunidadOfertaRelacionada();
 	}
-	public void IngresarIPSyTecnico(String NombreIPS, String ContaactTecnico) {
-		ganarPerderOfertaPage.SeleccionarContactoTecnico(ContaactTecnico);
+	public void IngresarIPSyTecnico(String NombreIPS, String ContactTecnico) {
+		ganarPerderOfertaPage.SeleccionarContactoTecnico(ContactTecnico);
 		ganarPerderOfertaPage.SeleccionarIPS(NombreIPS);
 		ganarPerderOfertaPage.Presentar();
 	}
@@ -24,8 +24,12 @@ public class GanarPerderOfertaSteps  {
 		ganarPerderOfertaPage.EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
 	}
 	
-	public void ganarPerderExpress(String strSitioA, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
-		ganarPerderOfertaPage.IngresarOfertaExpress( strSitioA,  strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	public void ganarPerderExpress(String strSitioA, String strSitioB, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
+		ganarPerderOfertaPage.IngresarOfertaExpress( strSitioA, strSitioB, strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	}
+	
+	public void ganarPerderExpress300(String strNomAplicativo, String strNumUsuarios, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
+		ganarPerderOfertaPage.IngresarOfertaExpress( strNomAplicativo, strNumUsuarios, strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
 	}
 
 }

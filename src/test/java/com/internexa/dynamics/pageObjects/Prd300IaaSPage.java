@@ -10,22 +10,25 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
-public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
+public class Prd300IaaSPage extends PageObject {
+
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
 	
-	public void encontrarOportunidad(String propiedadCapacidad, 
-									 String propiedadCiudadA,
-									 String propiedadSitioA) {
+	public void encontrarOportunidad(String strCiudadPrincipal, 
+									 String strCapacidad, 
+									 String strMemoriaRAM, 
+									 String strCategoria, 
+									 String strObstervacion,
+									 String strNomAplicativo,
+									 String strNumUsuarios) {
 		 String element = new String();
 	      String valorElemento = new String();
 	      
 		 try {
-			 
-			 //getDriver().navigate().refresh();
-			 
-			 if (propiedadSitioA.equals("")) {
+			
+			 if (strNumUsuarios.equals("")) {
 				 getDriver().switchTo().frame("contentIFrame"+"1");
 			 }
 			 else
@@ -40,22 +43,23 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	       
 	        int i=1;
 	        do {
-                element = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-               valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
-
-               if ((element.equals("Sí")|| element.equals("Sim") )&& valorElemento.isEmpty() ) {                               
+	        	
+	        	element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	        	
+                valorElemento = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+             
+               if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
-            	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,propiedadSitioA);
+            	   ActualizarPropiedadesProducto(i, strCiudadPrincipal,  strCapacidad,  strMemoriaRAM,  strCategoria,  strObstervacion,strNomAplicativo,strNumUsuarios);
             	   
-            	   if (propiedadSitioA.equals("")) {
+            	   if (strNumUsuarios.equals("")) {
       				 getDriver().switchTo().frame("contentIFrame"+"1");
-	      			 }
-	      			 else
-	      			 {
-	      				 getDriver().switchTo().frame("contentIFrame"+"0");
-	      			 }
-	      			 //utilidad.buscarIngresarFrame("contentIFrame");
-	      			
+      			 }
+      			 else
+      			 {
+      				 getDriver().switchTo().frame("contentIFrame"+"0");
+      			 }
+            	   //utilidad.buscarIngresarFrame("contentIFrame");
             	   
             	   HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
             	   TheTable=TheTable1;
@@ -81,15 +85,18 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	 * @param intColumna
 	 * @param propiedadCapacidad
 	 * @param propiedadCiudadA
-	 
 	 * //ingresa los valores de cada una de las Propiedades faltantes en el producto
 	   //Tener en cuenta que los nombres de Ciudades tienen que tener tildes si corresponde
 	        	
 	 */
 	public void ActualizarPropiedadesProducto(Integer intColumna,
-											  String propiedadCapacidad, 
-											  String propiedadCiudadA, 
-											  String propiedadSitioA) {
+											  String strCiudadPrincipal, 
+											  String strCapacidad, 
+											  String strMemoriaRAM, 
+											  String strCategoria, 
+											  String strObstervacion,
+											  String strNomAplicativo,
+											  String strNumUsuarios) {
 	        try {  
 
 	        	String strXpathDobleClick;
@@ -98,16 +105,29 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
 	        	if (intColumna == 1) {
-	        		llenarPropiedades.ValorDecimal(propiedadCapacidad);
+	        		llenarPropiedades.Ciudad(strCiudadPrincipal);
 	        		}
-	            else if (intColumna==5 ) {
+	            else if (intColumna==2 ) {
 	             	
-	            		llenarPropiedades.Ciudad(propiedadCiudadA);
+	            		llenarPropiedades.ValorDecimal(strCapacidad);
 	            	}
-	           	else if (intColumna==13) {     
-	            			llenarPropiedades.Sitio(propiedadSitioA);
+	            	else if (intColumna==4) {     
+	            		llenarPropiedades.ValorDecimal(strMemoriaRAM);
+	            	}
+	            		else if (intColumna==7) {     
+	            			llenarPropiedades.ValorListaPropiedad(strCategoria);
 	            		}
-		           
+	            		else if (intColumna==8) {     
+	            			llenarPropiedades.ValorPropiedad(strObstervacion);
+	            		}
+		            		else if (intColumna==14) {     
+		            			llenarPropiedades.ValorPropiedad(strNomAplicativo);
+		            		}
+			            		else if (intColumna==16) {     
+			            			llenarPropiedades.ValorEntero(strNumUsuarios);
+			            		}
+			        	
+	        	
 	               waitFor(1).second();
 	               getDriver().switchTo().defaultContent();
 	               waitFor(1).seconds();
@@ -120,4 +140,6 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	        }
 	  }
 	 
+	
+	
 }

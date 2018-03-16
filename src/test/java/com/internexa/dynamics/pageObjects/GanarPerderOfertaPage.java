@@ -1,5 +1,7 @@
 package com.internexa.dynamics.pageObjects;
 
+import static org.junit.Assert.fail;
+
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.util.Iterator;
@@ -107,6 +109,7 @@ public class GanarPerderOfertaPage extends PageObject {
            
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }	
 		}
 	
@@ -121,6 +124,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	        
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
+	           fail();
 	    }    
 	}
 	
@@ -151,6 +155,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
+	           fail();
 	    }    
 	}
 	
@@ -177,6 +182,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
+	           fail();
 	    }
 	}
 
@@ -201,8 +207,8 @@ public class GanarPerderOfertaPage extends PageObject {
             
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
-	    		
 	           System.out.println(ex.getMessage() + "");
+	           fail();
 	    }
 	}
 	
@@ -214,6 +220,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	       
 	    }catch (Exception ex) {
 	           System.out.println(ex.getMessage() + "");
+	           fail();
 	    }    
 	}
 	
@@ -232,6 +239,7 @@ public class GanarPerderOfertaPage extends PageObject {
            
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }	
 		}
 	
@@ -256,7 +264,7 @@ public class GanarPerderOfertaPage extends PageObject {
 		    find(By.id("areaSPDocuments")).click();
 		    utilidad.focusFrame(nombreFrame);
 		   
-		 
+		    waitFor(1).second();
 	    	getDriver().switchTo().frame(idframeContenedor);
 	    		utilidad.esperarObjeto(btnCargarDoc);
 	    		    		
@@ -288,18 +296,16 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	utilidad.esperaDesaparecer();
 	    	getDriver().switchTo().frame(ipsFrame);
 	    	waitFor(3).second();
-	          
-	    	
+//Ingresar Contrato se ingresa la primera por defefcto
 	    	find(By.xpath(contContrato)).click();
 			robot.keyPress(KeyEvent.VK_F2);
             find(By.xpath(editContrato)).sendKeys(Keys.ENTER);
             getDriver().findElement(By.xpath("//*[@id='Dialog_itx_contratoid_IMenu']/div[2]/ul/li[1]")).click();
-          
-            //find(By.xpath(contCompania)).click();
 			robot.keyPress(KeyEvent.VK_F2);
+//Ingresar Compañia  se ingresa la primera por defefcto
             find(By.xpath(editCompania)).sendKeys(Keys.ENTER);
             getDriver().findElement(By.xpath("//*[@id='Dialog_itx_companiaitxid_IMenu']/div[2]/ul/li[1]/a[2]")).click();
-          //*[@id="item6"]/a[2]
+     
             getDriver().switchTo().defaultContent();
             
             Serenity.takeScreenshot();
@@ -308,7 +314,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
             waitFor(2).seconds();
 	        getDriver().switchTo().alert().accept();
-	        waitFor(2).seconds();
+	        waitFor(5).seconds();
 	        getDriver().switchTo().alert().accept();
 	        waitFor(2).seconds();
 
@@ -334,6 +340,7 @@ public class GanarPerderOfertaPage extends PageObject {
 		}
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }	
 		}
 	
@@ -354,17 +361,18 @@ public class GanarPerderOfertaPage extends PageObject {
 		        Serenity.takeScreenshot();
 		        getDriver().switchTo().alert().accept();
 		        waitFor(1).seconds();
-		        getDriver().switchTo().frame(nombreFrame+"1");
+		        /*getDriver().switchTo().frame(nombreFrame+"1");
 		        	getDriver().findElement(By.xpath("//*[@id='Administracion_Expander']")).click();
 		        	waitFor(1).seconds();
 		        	getDriver().findElement(By.xpath("//*[@id='Administracion_content']/div/div[1]")).click();
-		        getDriver().switchTo().defaultContent();
+		        getDriver().switchTo().defaultContent();*/
 			
 			}
             
            
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }	
 		}
 	
@@ -398,9 +406,10 @@ public class GanarPerderOfertaPage extends PageObject {
         
         	catch(Exception ex){
      	    System.out.println(ex.getMessage()+"");  
+     	   fail();
         	}	
 		}
-	public void IngresarOfertaExpress (String strSitioA, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip){
+	public void IngresarOfertaExpress (String strSitioA,String strSitioB, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip){
 		try{ 
 			Robot robot = new Robot();
 			String element = new String();
@@ -414,25 +423,28 @@ public class GanarPerderOfertaPage extends PageObject {
 			String mapeoBotonOferta="//*[@id=\"tab2\"]/div[2]/div/div/table/tbody/tr[2]/td/div/span/div/div/span/div/div/div/div/div[2]/div";
 			getDriver().findElement(By.xpath(mapeoBotonOferta)).click();
 
-			waitFor(7).second();
+			waitFor(8).second();
 
 			Set<String> handles = getDriver().getWindowHandles(); // Obten todas las ventana abiertas
 			Iterator<String> iterator = handles.iterator();
+			waitFor(2).second();
 			while (iterator.hasNext()){
 			    subWindowHandler = iterator.next();
 			}
+				waitFor(2).second();
 				getDriver().switchTo().window(subWindowHandler); // Cámbiate a la ultima ventana (tu pop-up)
 				waitFor(5).second();
-				//find(By.id(nombreFrame+"0")).setWindowFocus();
-				utilidad.esperaDesaparecer();
+			
+				getDriver().navigate().refresh();
+				waitFor(5).second();
 				getDriver().switchTo().frame(nombreFrame+"0");
 				waitFor(2).second();
-				//*[@id="quote_titleWithErrors"]
-				//find(By.xpath("//*[@id='QUOTES_Expander']")).click();
+				
+				find(By.xpath("//*[@id='quotedetailsGrid_divDataArea']")).waitUntilClickable();
 				find(By.xpath("//*[@id='quotedetailsGrid_divDataArea']")).click();
 				waitFor(2).second();
 				element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr/td[4]/div")).getText();
-				
+				waitFor(2).second();
                               
                 if (element.equals("No")) {
                        utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr/td[4]/div");
@@ -441,7 +453,7 @@ public class GanarPerderOfertaPage extends PageObject {
                        find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
                        getDriver().navigate().refresh();
                        
-                       buscarProductoPage.seleccionProdFact(strSitioA);
+                       buscarProductoPage.seleccionProdFact(strSitioA,strSitioB);
        					
                        waitFor(2).second();
                        guardarCerrarToolBox.btnGuardarCerrar();
@@ -457,6 +469,7 @@ public class GanarPerderOfertaPage extends PageObject {
 				
 				//OportunidadOfertaRelacionada();
 				getDriver().switchTo().frame(nombreFrame+"1");
+				waitFor(2).second();
 				getDriver().findElement(By.xpath("//*[@id='quote_divDataArea']/div/table/tbody/tr/td[3]/nobr")).click();
 				waitFor(2).second();
 				if (strActivarCampo.equals("OK"))
@@ -495,14 +508,12 @@ public class GanarPerderOfertaPage extends PageObject {
 				
 				EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
 				
-			//Llamar funcion producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", Dato01);
-			//STEPS GANAR PERDER OFERTA
-			//LlamarFuncion IngresarIPSyTecnico
-			// llamar funcion seleccionarGanarPerder
+			
 			
 		}
 	 	catch(Exception ex){
      	    System.out.println(ex.getMessage()+"");  
+     	   fail();
         	}	
 		}
 	

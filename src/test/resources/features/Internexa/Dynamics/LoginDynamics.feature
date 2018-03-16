@@ -1,101 +1,121 @@
 @Critico
-	Feature: Creacion Nuevo Oportunidad
+	Feature: Creacion Nueva Oportunidad
 	I want to use this template for my feature file
 
 #Nuevo Caso de prueba con TIPO DE OPORTUNIDAD: Proyecto
 
-@CPOportunidadProyecto
-Scenario: Creacion de Oportunidades
-Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Mar2018*"
+@CPGEneralSolucionProyectoConFactibilidad
+Scenario Outline: Creacion de Oportunidad
+Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Avantel S.A." el nombre "PRUEBA Auto40.1Factibilidad" el tipo de venta "Nuevo cliente" fecha estimada de venta "15/03/2018" probabilidad de exito "40%" fecha estimada de ingreso "16/03/2018" tipo de oportunidad "Proyecto" contrato a meses "9" y se guarda la oportunidad
-##Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Avantel S.A." el nombre "PRUEBA Auto40.1Factibilidad" el tipo de venta "Novo cliente" fecha estimada de venta "15/03/2018" probabilidad de exito "40%" fecha estimada de ingreso "16/03/2018" tipo de oportunidad "Proyecto" contrato a meses "9" y se guarda la oportunidad
-And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "40" 
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad "120" ciudad a "LIMA" ciudad b "bogotá" dirección "Av Republica de Pananma 1123"
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <FecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <FecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
+And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <TxtCodigoProducto>
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <txtCapacidad> ciudad a <txtCiudadA> ciudad b <txtCiudadB> dirección <txtDireccion>
 And se ingresa la factibilidad 
-And se detallan datos de factibilidad IPS "Gelly Andrea Bustamante" Observacion "Pruebas factibilidad 12233"
+And se detallan datos de factibilidad IPS <TxtIps> Observacion <TxtFactObsevacion>
 And se envia solicitud factibilidad
 And se cierra sesión de Gerente Cuenta
-
-@CPOportunidadProyecto70
-Scenario: Creacion de Oportunidades
-Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Mar2018*"
-And elijo Ventas luego Oportunidades
-When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Avantel S.A." el nombre "PRUEBA Auto70.1Factibilidad" el tipo de venta "Nuevo cliente" fecha estimada de venta "27/02/2018" probabilidad de exito "40%" fecha estimada de ingreso "28/02/2018" tipo de oportunidad "Proyecto" contrato a meses "9" y se guarda la oportunidad
-And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "70" 
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad "130" ciudad a "Bogotá" ciudad b "" dirección ""
-And se ingresa la factibilidad 
-And se detallan datos de factibilidad IPS "Gelly Andrea Bustamante" Observacion "Pruebas factibilidad 12233"
-And se envia solicitud factibilidad
-And se cierra sesión de Gerente Cuenta
-
-#Nuevo Caso de prueba con TIPO DE OPORTUNIDAD: Solución
-
-@CPOportunidadSolucion
-Scenario: Creacion de Oportunidades
-Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Mar2018*"
-And elijo Ventas luego Oportunidades
-When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Avantel S.A." el nombre "PRUEBA Auto1.2Factibilidad" el tipo de venta "Nuevo cliente" fecha estimada de venta "27/02/2018" probabilidad de exito "60%" fecha estimada de ingreso "28/02/2018" tipo de oportunidad "Solución" contrato a meses "9" y se guarda la oportunidad
-And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "40" 
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad "120" ciudad a "LIMA" ciudad b "bogotá" dirección "Av Republica de Panama 1123"
-And se ingresa la factibilidad 
-And se detallan datos de factibilidad IPS "Gelly Andrea Bustamante" Observacion "Pruebas factibilidad 12233"
-And se envia solicitud factibilidad
-And se cierra sesión de Gerente Cuenta
-
-#Aprobar Factibilidad
-
-@ApruebaFactibilidad @CPOportunidadProyecto @CPOportunidadSolucion
-Scenario: Aprueba Factibilidad
-Given me logueo al aplicativo Dynamics como "GBUSTAMANTE@INTERNEXA.COM" con pass "Febrero2018*"
-When elijo Ventas luego Actividades 
-Then se busca correo de solicitud de factibilidad 
+##FACTIBILIDAD
+And me logueo al aplicativo Dynamics como <TxtUsuarioIps> con pass <TxtPassIps>
+And elijo Ventas luego Actividades 
+And se busca correo de solicitud de factibilidad 
 And  se seleccion el correo que necesita aprobacion
-And  se ingresa y se llenan datos requeridos, Sitio A "ICA"
+And  se ingresa y se llenan datos requeridos, Sitio A <TxtSitioA> Sitio B <TxtSitioB>
+And se cierra sesión de Gerente Cuenta
+##GanarPerderOferta
+And me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
+And elijo Ventas luego Factibilidad
+And se busca factibilidad estado Finalizada
+And generar Oferta
+And Ingresar datos de IPS <TxtIps> y Contacto Tecnico <TxtNomTecnico>
+And se ingresa ganarPerder <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
+
+Examples:
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|FecEstimadaVenta|TxtProvExito|FecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|txtCapacidad|txtCiudadA|txtCiudadB|txtDireccion|TxtIps|TxtFactObsevacion|TxtUsuarioIps|TxtPassIps|TxtSitioA|TxtSitioB|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@ProyectoSolucion
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Solucion Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA|CHICLAYO|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Solucion Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA|CHICLAYO|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|70|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Solucion Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|70|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Proyecto Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Solucion Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Proyecto Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA|CHICLAYO|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Solucion Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA|CHICLAYO|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Proyecto Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|70|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Solucion Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|70|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Perder|4|Ofera 12312|
+
+###EJECUCION CASO PRODUCTO 300
+
+@CPGEneralSolucionProyectoConFactibilidad300
+Scenario: Creacion de Oportunidades
+Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
+And elijo Ventas luego Oportunidades
+When selecciono NUEVO
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <FecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <FecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
+And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <TxtCodigoProducto>
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad Ciudad principal <TxtCiudadPrincipal> capacidad <TxtCapacidad> MemoriaRAM <TxtMemoriaRAM> Categoría <TxtCategoria> Observación <TxtObservacion>  
+And se ingresa la factibilidad 
+And se detallan datos de factibilidad IPS <TxtIps> Observacion <TxtFactObsevacion>
+And se envia solicitud factibilidad
+And se cierra sesión de Gerente Cuenta
+##Factibilidad
+And me logueo al aplicativo Dynamics como <TxtUsuarioIps> con pass <TxtPassIps>
+And elijo Ventas luego Actividades 
+And se busca correo de solicitud de factibilidad 
+And  se seleccion el correo que necesita aprobacion
+And  se ingresa y se llenan datos requeridos, Nombre Aplicativo <TxtNombreAplicativo> Cuantos Usuarios acceden <TxtNumUsuarios>
+And se cierra sesión de Gerente Cuenta
+##GanarPerderOferta
+And me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
+And elijo Ventas luego Factibilidad
+And se busca factibilidad estado Finalizada
+And generar Oferta
+And Ingresar datos de IPS <TxtIps> y Contacto Tecnico <TxtNomTecnico>
+And se ingresa ganarPerder <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
+
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|FecEstimadaVenta|TxtProvExito|FecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCiudadPrincipal|TxtCapacidad|TxtMemoriaRAM|TxtCategoria|TxtObservacion|TxtIps|TxtFactObsevacion|TxtUsuarioIps|TxtPassIps|TxtNombreAplicativo|TxtNumUsuarios|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@ProyectoSolucion300
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|Choucair|112|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Solucion Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|Choucair|112|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Proyecto Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|Choucair|112|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Solucion Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|Choucair|112|FERNANDO PARRA|Ganar|4|Ofera 12312|
 
 @CPOportunidadExpres
-Scenario: Creacion de Oportunidades
-Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Feb2018*"
+Scenario Outline: Creacion de Oportunidades
+Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta "Avantel S.A." el nombre "PRUEBA Auto1.1Factibilidad" el tipo de venta "Nuevo cliente" fecha estimada de venta "27/02/2018" probabilidad de exito "40%" fecha estimada de ingreso "28/02/2018" tipo de oportunidad "Express" contrato a meses "9" y se guarda la oportunidad
-And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto "40" 
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad "120" ciudad a "LIMA" ciudad b "bogotá" dirección "Av Republica de Pananma 1123"
-##And se ingresa la factibilidad 
-##And se detallan datos de factibilidad
-##And se envia solicitud factibilidad
-##And se cierra sesión de Gerente Cuenta
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <DateFecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <DateFecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <txtContratoMeses> y se guarda la oportunidad
+And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <txtCodigoProducto> 
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <txtCapacidad> ciudad a <txtCiudadA> ciudad b <txtCiudadB> dirección <txtDireccion>
+And se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A <TxtSitioA> Sitio B <TxtSitioB> ingresa datos de IPS <TxtNomIPS> y Contacto Tecnico <TxtNomTecnico> ganar <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
+
+Examples:
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|DateFecEstimadaVenta|TxtProvExito|DateFecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCapacidad|txtCiudadA|txtCiudadB|txtDireccion|TxtSitioA|TxtSitioB|TxtNomIPS|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@Express
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|12|40|120|LIMA|bogotá|Av Republica de Panama 1123|ICA||Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|ICA|CHICLAYO|Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|70|47|LIMA|bogotá|Av Republica de Panama 1123|ICA||Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Express Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|ICA||Gelly Andrea Bustamante|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Express Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|10|37|120|LIMA|bogotá|Av Republica de Panama 1123|ICA|CHICLAYO|Gelly Andrea Bustamante|FERNANDO PARRA|Perder|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto70.1 Express Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|70|120|LIMA|bogotá|Av Republica de Panama 1123|ICA||Gelly Andrea Bustamante|FERNANDO PARRA|Perder|4|Ofera 12312|
 
 
+@CPOportunidadExpres300
+Scenario Outline: Creacion de Oportunidades
+Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
+And elijo Ventas luego Oportunidades
+When selecciono NUEVO
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <DateFecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <DateFecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
+And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <TxtCodigoProducto> 
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad Ciudad principal <TxtCiudadPrincipal> capacidad <TxtCapacidad> MemoriaRAM <TxtMemoriaRAM> Categoría <TxtCategoria> Observación <TxtObservacion> 
+And se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Nombre Aplicativo <TxtNombreAplicativo> Cuantos Usuarios acceden <TxtNumUsuarios> ingresa datos de IPS <TxtNomIPS> y Contacto Tecnico <TxtNomTecnico> ganar <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
 
-@GeneraOferta @CPOportunidadProyecto @CPOportunidadSolucion
-Scenario: Oferta
-Given me logueo al aplicativo Dynamics como "jbedoya@internexa.com" con pass "Mar2018*"
-When elijo Ventas luego Factibilidad
-Then se busca factibilidad estado Finalizada
-And generar Oferta
-And Ingresar datos de IPS "Gelly Andrea Bustamante" y Contacto Tecnico "FERNANDO PARRA" 
-##And se ingresa "Perder" con Motivo:"1" y Descripcion: "Ofera 12312"
-And se ingresa "Ganar" con Motivo:"4" y Descripcion: "Ofera 12312"
-
-####   MOTIVO   Perder### 
-#1 "Perdido por cliente canceló proyecto"                                                               
-#2 "Perdido por cliente final no contrató servicio"                                                     
-#3 "Perdido por costo de última milla"                                                                  
-#4 "Perdido por factibilidad negativa"                                                                  
-#5 "Perdido por fecha de entrega del servicio no alcanzable o viable"                                   
-#6 "Perdido por no cumplimiento de los requisitos del proceso."                                         
-#7 "Perdido por no participación ITX"                                                                   
-#8 "Perdido por no reciprocidad comercial"                                                              
-#9 "Perdido por oferta técnica"                                                                         
-#10 "Perdido por precio"  
-####333333333333333333333333333333   MOTIVO   Ganar### 
-#1 "Ganado por mejor oferta económica" 
-#2 "Ganado por reciprocidad comercial" 
-#3 "Ganado por renovación contrato actual" 
-#4 "Ganado por cobertura"
-#5 "Ganado por mejor oferta técnica" 
-
+Examples:
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|DateFecEstimadaVenta|TxtProvExito|DateFecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCiudadPrincipal|TxtCapacidad|TxtMemoriaRAM|TxtCategoria|TxtObservacion|TxtNombreAplicativo|TxtNumUsuarios|TxtNomIPS|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@Express300
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Choucair|123|Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
+|jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Express Perder Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Choucair|123|Gelly Andrea Bustamante|FERNANDO PARRA|Perder|4|Ofera 12312|

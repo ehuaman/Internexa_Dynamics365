@@ -35,11 +35,10 @@ public class FactibilidadSteps  {
 		
 		factibilidadPage.buscarCorreoAprobar();
 	}
-	public void evaluacionAprFactibilidad(String Dato01) {
+	public void evaluacionAprFactibilidad(String Dato01, String Dato02) {
 		
 		factibilidadPage.productoEvaluacion();
-		buscarProductoPage.seleccionProdFact(Dato01);
-		//producto40LASTMILENACIONALEditarPage.encontrarOportunidad("", "", "", "", Dato01);
+		buscarProductoPage.seleccionProdFact(Dato01,Dato02);
 		factibilidadPage.cambioEstadoFactibilidad();
 		
 	}

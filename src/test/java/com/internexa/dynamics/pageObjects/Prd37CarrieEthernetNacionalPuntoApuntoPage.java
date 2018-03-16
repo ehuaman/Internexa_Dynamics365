@@ -1,5 +1,4 @@
 package com.internexa.dynamics.pageObjects;
-
 import static org.junit.Assert.fail;
 
 import com.internexa.dynamics.HtmlTable;
@@ -10,14 +9,16 @@ import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
-public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
+public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
 	
 	public void encontrarOportunidad(String propiedadCapacidad, 
-									 String propiedadCiudadA,
-									 String propiedadSitioA) {
+									 String propiedadCiudadA, 
+									 String propiedadCiudadB, 
+									 String propiedadSitioA,
+									 String propiedadSitioB) {
 		 String element = new String();
 	      String valorElemento = new String();
 	      
@@ -25,7 +26,7 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 			 
 			 //getDriver().navigate().refresh();
 			 
-			 if (propiedadSitioA.equals("")) {
+			 if (propiedadSitioB.equals("")) {
 				 getDriver().switchTo().frame("contentIFrame"+"1");
 			 }
 			 else
@@ -33,29 +34,30 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 				 getDriver().switchTo().frame("contentIFrame"+"0");
 			 }
 			 //utilidad.buscarIngresarFrame("contentIFrame");
-			
+			 
+			 			
 	        waitFor(2).seconds();
 	     
 	        HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
 	       
 	        int i=1;
 	        do {
-                element = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-               valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
-
-               if ((element.equals("Sí")|| element.equals("Sim") )&& valorElemento.isEmpty() ) {                               
+	        	 element = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	               valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+	         
+             
+               if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
-            	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,propiedadSitioA);
+            	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadSitioA,propiedadSitioB);
             	   
-            	   if (propiedadSitioA.equals("")) {
+            	   if (propiedadSitioB.equals("")) {
       				 getDriver().switchTo().frame("contentIFrame"+"1");
-	      			 }
+	            	   }
 	      			 else
 	      			 {
 	      				 getDriver().switchTo().frame("contentIFrame"+"0");
 	      			 }
-	      			 //utilidad.buscarIngresarFrame("contentIFrame");
-	      			
+      			 //utilidad.buscarIngresarFrame("contentIFrame");
             	   
             	   HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
             	   TheTable=TheTable1;
@@ -81,7 +83,6 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	 * @param intColumna
 	 * @param propiedadCapacidad
 	 * @param propiedadCiudadA
-	 
 	 * //ingresa los valores de cada una de las Propiedades faltantes en el producto
 	   //Tener en cuenta que los nombres de Ciudades tienen que tener tildes si corresponde
 	        	
@@ -89,13 +90,18 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	public void ActualizarPropiedadesProducto(Integer intColumna,
 											  String propiedadCapacidad, 
 											  String propiedadCiudadA, 
-											  String propiedadSitioA) {
+											  String propiedadCiudadB, 
+											  String propiedadSitioA,
+											  String propiedadSitioB) {
 	        try {  
 
 	        	String strXpathDobleClick;
 	        	strXpathDobleClick="//*[@id='gridBodyTable']/tbody/tr["+intColumna+"]/td[4]/div";
 	        	//Funcion que da doble click sobre SI
 	        	utilidad.dobleClick(strXpathDobleClick);
+	        	
+	        	
+	        	
 	        	waitFor(3).second();
 	        	if (intColumna == 1) {
 	        		llenarPropiedades.ValorDecimal(propiedadCapacidad);
@@ -104,10 +110,16 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	           	else if (intColumna==13) {     
+	            	else if (intColumna==6) {     
+	            		llenarPropiedades.Ciudad(propiedadCiudadB);
+	            	}
+	            		else if (intColumna==12) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
 	            		}
-		           
+	            		else if (intColumna==13) {     
+	            			llenarPropiedades.Sitio(propiedadSitioB);
+	            		}
+	        	
 	               waitFor(1).second();
 	               getDriver().switchTo().defaultContent();
 	               waitFor(1).seconds();

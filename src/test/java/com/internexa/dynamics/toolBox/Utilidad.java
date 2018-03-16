@@ -54,6 +54,7 @@ public class Utilidad extends PageObject {
     	Serenity.takeScreenshot();
     	find(By.xpath("//*[@id='navTabButtonUserInfoSignOutId']")).click();
     	waitFor(2).seconds();
+    	getDriver().quit();
 	}
 	
 	public void buscarEnGrid(String strBuscar) {
@@ -77,6 +78,7 @@ public class Utilidad extends PageObject {
 		        waitFor(1).seconds();
 		        getDriver().switchTo().defaultContent();
 		        waitFor(1).seconds();
+		       
 		 } catch (Exception ex) {
 		        System.out.println(ex.getMessage() + "");
 		 }

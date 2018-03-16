@@ -1,5 +1,7 @@
 package com.internexa.dynamics.pageObjects;
 
+import static org.junit.Assert.fail;
+
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
@@ -17,7 +19,8 @@ public class OportunidadesAbiertasPage extends PageObject{
                find(By.id("opportunity|NoRelationship|HomePageGrid|Mscrm.HomepageGrid.opportunity.NewRecord")).click();
         }
         catch(Exception ex){                    
-               System.out.println(ex.getMessage()+"");               
+               System.out.println(ex.getMessage()+"");  
+               fail();
         }
         
   }

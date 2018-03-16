@@ -5,6 +5,9 @@ import com.internexa.dynamics.HtmlTable;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
+
+import static org.junit.Assert.fail;
+
 import org.openqa.selenium.Keys; 
 
 public class OportunidadPage extends PageObject{
@@ -26,6 +29,7 @@ public class OportunidadPage extends PageObject{
            }
            catch(Exception ex){
         	   System.out.println(ex.getMessage()+"");  
+        	   fail();
            }	
 		}
 
@@ -52,6 +56,7 @@ public class OportunidadPage extends PageObject{
 			
 		}catch(Exception ex){
 	 	   System.out.println(ex.getMessage()+"");
+	 	  fail();
 	    }
 		
 	}
@@ -81,6 +86,7 @@ public class OportunidadPage extends PageObject{
                waitFor(1).seconds();
         }catch (Exception ex) {
                System.out.println(ex.getMessage() + "");
+               fail();
         }
   }
 
