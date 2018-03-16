@@ -91,8 +91,8 @@ When elijo Ventas luego Factibilidad
 Then se busca factibilidad estado Finalizada
 And generar Oferta
 And Ingresar datos de IPS "Gelly Andrea Bustamante" y Contacto Tecnico "FERNANDO PARRA" 
-##And se ingresa "Perder" con Motivo:"1" y Descripcion: "Ofera 12312"
-And se ingresa "Ganar" con Motivo:"4" y Descripcion: "Ofera 12312"
+And se ingresa "Perder" con Motivo:"1" y Descripcion: "Ofera 12312"
+##And se ingresa "Ganar" con Motivo:"4" y Descripcion: "Ofera 12312"
 
 ####   MOTIVO   Perder### 
 #1 "Perdido por cliente canceló proyecto"                                                               

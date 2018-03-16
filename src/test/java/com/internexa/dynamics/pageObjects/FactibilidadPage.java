@@ -46,7 +46,7 @@ public String numeroFactibilidad;
 	public void AgregarFactibilidad() {
 		try{ 
 			 utilidad.buscarIngresarFrame(nombreFrame);
-            waitFor(3).seconds();
+           
 			find(By.xpath(contineFactibilidades)).waitUntilVisible();
 			find(By.xpath(contineFactibilidades)).waitUntilEnabled();
 			find(By.xpath(contineFactibilidades)).click();
@@ -116,7 +116,7 @@ public String numeroFactibilidad;
 	        utilidad.esperaDesaparecer();
 	        waitFor(3).seconds();
 	        utilidad.buscarIngresarFrame(nombreFrame);
-            waitFor(2).seconds();
+            
 	        find(By.xpath(divAreaFactibilidad)).waitUntilVisible();
 			find(By.xpath(divAreaFactibilidad)).waitUntilEnabled();
 			find(By.xpath(divAreaFactibilidad)).click();
@@ -167,7 +167,7 @@ public String numeroFactibilidad;
 			 //find(By.id(nombreFrame+"0")).waitUntilVisible();
 			 utilidad.buscarIngresarFrame(nombreFrame);
 		        
-		        waitFor(2).seconds();
+		        
 		      
 		        find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]/div/div[1]/div[1]")).click();
 				element=find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]//div/div[1]/div[1]/div/div[1]")).getTextValue();
@@ -207,7 +207,7 @@ public String numeroFactibilidad;
 	    try {    
 	    	getDriver().navigate().refresh();
 	    	 utilidad.buscarIngresarFrame(nombreFrame);
-	        waitFor(2).seconds();
+	        
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
 	    	waitFor(1).seconds();
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
@@ -256,7 +256,7 @@ public String numeroFactibilidad;
 	public void cambioEstadoFactibilidad() {
 	    try {    
 	    	 utilidad.buscarIngresarFrame(nombreFrame);
-	        waitFor(2).seconds();
+	        
 	      //*[@id='itx_estadodelproducto']/div[1]
 	        find(By.xpath("//*[@id='itx_estadodelproducto']/div[1]")).click();
 	        getDriver().findElement(By.xpath("//*[@id='itx_estadodelproducto_i']/option[2]")).click();

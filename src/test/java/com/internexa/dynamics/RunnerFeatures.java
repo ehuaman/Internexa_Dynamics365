@@ -24,7 +24,7 @@ import org.junit.runner.RunWith;
 	//Caso de prueba Solución y Aprobación de Factibilidad
 	  // @CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/CasosGanarOferta.feature", tags = "@CPOportunidadSolucion70")
 	//Caso de prueba Express
-	  @CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/CasosGanarOferta.feature", tags = "@CPOportunidadExpres70")
+	  @CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics/CasosGanarOferta.feature", tags = {"@CPOportunidadSolucion"})
 
 
 

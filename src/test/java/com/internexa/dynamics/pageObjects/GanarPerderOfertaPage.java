@@ -201,6 +201,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
+	    		
 	           System.out.println(ex.getMessage() + "");
 	    }
 	}
