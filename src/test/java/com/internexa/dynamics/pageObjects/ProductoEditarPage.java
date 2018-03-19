@@ -71,7 +71,7 @@ public class ProductoEditarPage extends PageObject {
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
 	        	if (intColumna == 1) {
-	        		llenarPropiedades.Capacidad("100");
+	        		llenarPropiedades.ValorDecimal("100");
 	        	}
 	            else if (intColumna==5) {
 	             	

@@ -50,7 +50,7 @@ Examples:
 ###EJECUCION CASO PRODUCTO 300
 
 @CPGEneralSolucionProyectoConFactibilidad300
-Scenario: Creacion de Oportunidades
+Scenario Outline: Creacion de Oportunidades
 Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
@@ -76,6 +76,7 @@ And generar Oferta
 And Ingresar datos de IPS <TxtIps> y Contacto Tecnico <TxtNomTecnico>
 And se ingresa ganarPerder <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
 
+Examples:
 |TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|FecEstimadaVenta|TxtProvExito|FecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCiudadPrincipal|TxtCapacidad|TxtMemoriaRAM|TxtCategoria|TxtObservacion|TxtIps|TxtFactObsevacion|TxtUsuarioIps|TxtPassIps|TxtNombreAplicativo|TxtNumUsuarios|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
 ##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@ProyectoSolucion300
 |jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto300.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|300|CAJAMARCA|170|300|SCADA|Observacion 300|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|Choucair|112|FERNANDO PARRA|Ganar|4|Ofera 12312|
@@ -88,7 +89,7 @@ Scenario Outline: Creacion de Oportunidades
 Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
-Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <DateFecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <DateFecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <txtContratoMeses> y se guarda la oportunidad
+Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <DateFecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <DateFecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
 And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <txtCodigoProducto> 
 And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <txtCapacidad> ciudad a <txtCiudadA> ciudad b <txtCiudadB> dirección <txtDireccion>
 And se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A <TxtSitioA> Sitio B <TxtSitioB> ingresa datos de IPS <TxtNomIPS> y Contacto Tecnico <TxtNomTecnico> ganar <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>

@@ -1,85 +1,94 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.internexa.dynamics</groupId>
-  <artifactId>com.internexa.dynamics</artifactId>
-  <version>1.0.0</version>
-  <packaging>jar</packaging>
+	<groupId>com.internexa.dynamics</groupId>
+	<artifactId>com.internexa.dynamics</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
 
-  <name>com.internexa.dynamics</name>
-  <url>http://maven.apache.org</url>
+	<name>com.internexa.dynamics</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<maven.compiler.testSource>1.8</maven.compiler.testSource>
-     	<maven.compiler.testTarget>1.8</maven.compiler.testTarget>
-  	<serenity.version>1.8.21</serenity.version> <!-- https://bintray.com/serenity/maven/serenity-core/ -->
-        <serenity.maven.version>1.8.21</serenity.maven.version>
-        <serenity.cucumber.version>1.6.10</serenity.cucumber.version> <!--  https://bintray.com/serenity/maven/serenity-cucumber/ -->
-        
-  </properties>
+		<serenity.version>1.8.21</serenity.version> <!-- https://bintray.com/serenity/maven/serenity-core/ -->
+		<serenity.maven.version>1.8.21</serenity.maven.version>
+		<serenity.cucumber.version>1.6.10</serenity.cucumber.version> <!-- https://bintray.com/serenity/maven/serenity-cucumber/ -->
+	</properties>
 
-  <!-- Define the Bintray repos for convenience -->
-    <repositories>
-        <repository>
-            <id>serenity</id>
-            <name>bintray</name>
-            <url>http://dl.bintray.com/serenity/maven</url>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>serenity</id>
-            <name>bintray-plugins</name>
-            <url>http://dl.bintray.com/serenity/maven</url>
-        </pluginRepository>
-    </pluginRepositories>
+	<!-- Define the Bintray repos for convenience -->
+	<repositories>
+		<repository>
+			<id>serenity</id>
+			<name>bintray</name>
+			<url>http://dl.bintray.com/serenity/maven</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>serenity</id>
+			<name>bintray-plugins</name>
+			<url>http://dl.bintray.com/serenity/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
 
-    <dependencies>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-core</artifactId>
-            <version>${serenity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-junit</artifactId>
-            <version>${serenity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-rest-assured</artifactId>
-            <version>${serenity.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>net.serenity-bdd</groupId>
-            <artifactId>serenity-cucumber</artifactId>
-            <version>${serenity.cucumber.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
-        </dependency>
-      <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.8.0</version>
-            <scope>test</scope>
-        </dependency>
-      
-  
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-core</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-junit</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-rest-assured</artifactId>
+			<version>${serenity.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.serenity-bdd</groupId>
+			<artifactId>serenity-cucumber</artifactId>
+			<version>${serenity.cucumber.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.1</version>
+		</dependency>
+		
+		<dependency>
+		<groupId>org.apache.poi</groupId> <!--Lectura de documentos de excel para DDT -->
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.poi</groupId> <!-- Archivos adicionales entre ellos el control de errores -->
+		    <artifactId>poi-ooxml</artifactId>
+   		 <version>3.17</version>
+		</dependency>
+	
+
+	</dependencies>
+	
+	
+	
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
+				<configuration>
+	                <fork>true</fork>
+	                <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
+	            </configuration>
 				<executions>
 					<execution>
 						<id>default-compile</id>
@@ -87,8 +96,8 @@
 							<showDeprecation>true</showDeprecation>
 							<showWarnings>true</showWarnings>
 							<compilerArguments>
-								<source>${maven.compiler.source}</source>
-								<target>${maven.compiler.target}</target>
+								<source>${maven.compiler.target}</source>
+								<target>${maven.compiler.source}</target>
 							</compilerArguments>
 						</configuration>
 					</execution>
@@ -98,8 +107,8 @@
 							<showDeprecation>true</showDeprecation>
 							<showWarnings>true</showWarnings>
 							<compilerArguments>
-								<source>${maven.compiler.testTarget}</source>
-								<target>${maven.compiler.testSource}</target>
+								<source>${maven.compiler.testSource}</source>
+								<target>${maven.compiler.testTarget}</target>
 							</compilerArguments>
 						</configuration>
 					</execution>
@@ -127,7 +136,7 @@
 					<testFailureIgnore>true</testFailureIgnore>
 
 					<includes>
-						<include>com.internexa.dynamics/**/*.java</include>
+						<include>**/definitions/**/*Test.java</include>
 					</includes>
 
 					<systemProperties>
@@ -136,14 +145,58 @@
 
 				</configuration>
 			</plugin>
-			<plugin>
-	            <artifactId>maven-compiler-plugin</artifactId>
+			 <!--<plugin>
+	            <artifactId>maven-compiler-plugin1</artifactId>
 	            <version>3.1</version>
 	            <configuration>
 	                <fork>true</fork>
 	                <executable>C:\Program Files\Java\jdk1.8.0_161\bin\javac.exe</executable>
-            </configuration>
-        </plugin>
+	            </configuration>
+        	</plugin>-->
 		</plugins>
+		
 	</build>
+
+<profiles>	
+	<profile>
+   <id>Grupo1</id>
+   <build>
+    <plugins>
+     <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>2.18.1</version>
+      <configuration>
+       <includes>
+        <include>com.internexa.dynamics/**/*.java</include>
+       </includes>
+      </configuration>
+     </plugin>
+    </plugins>
+   </build>
+  </profile>
+  
+  <profile>
+   <id>Grupo2</id>
+   <build>
+    <plugins>
+     <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-surefire-plugin</artifactId>
+      <version>2.18.1</version>
+      <configuration>
+       <includes>
+        <include>com.internexa.dynamics/**/RunnerCucumber300.java</include>
+       </includes>
+      </configuration>
+     </plugin>
+    </plugins>
+   </build>
+  </profile>
+  
+ </profiles>
+ 
+
+	
+	
 </project>
