@@ -11,7 +11,7 @@ And elijo Ventas luego Oportunidades
 When selecciono NUEVO
 Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <FecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <FecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
 And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <TxtCodigoProducto>
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <txtCapacidad> ciudad a <txtCiudadA> ciudad b <txtCiudadB> dirección <txtDireccion>
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <TxtCapacidad> ciudad a <TxtCiudadA> ciudad b <TxtCiudadB> dirección <TxtDireccion>
 And se ingresa la factibilidad 
 And se detallan datos de factibilidad IPS <TxtIps> Observacion <TxtFactObsevacion>
 And se envia solicitud factibilidad
@@ -32,7 +32,7 @@ And Ingresar datos de IPS <TxtIps> y Contacto Tecnico <TxtNomTecnico>
 And se ingresa ganarPerder <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
 
 Examples:
-|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|FecEstimadaVenta|TxtProvExito|FecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|txtCapacidad|txtCiudadA|txtCiudadB|txtDireccion|TxtIps|TxtFactObsevacion|TxtUsuarioIps|TxtPassIps|TxtSitioA|TxtSitioB|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|FecEstimadaVenta|TxtProvExito|FecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCapacidad|TxtCiudadA|TxtCiudadB|TxtDireccion|TxtIps|TxtFactObsevacion|TxtUsuarioIps|TxtPassIps|TxtSitioA|TxtSitioB|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
 ##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@ProyectoSolucion
 |jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Proyecto Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Proyecto|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
 |jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Solucion Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Solucion|9|40|120|LIMA|bogotá|Av Republica de Panama 1123|Gelly Andrea Bustamante|Pruebas factibilidad 12233|GBUSTAMANTE@INTERNEXA.COM|Mar2018*|ICA||FERNANDO PARRA|Ganar|4|Ofera 12312|
@@ -90,12 +90,12 @@ Given me logueo al aplicativo Dynamics como <TxtUsuario> con pass <TxtClave>
 And elijo Ventas luego Oportunidades
 When selecciono NUEVO
 Then se presenta la pantalla de Nuevo Oportunidad y se ingresa la cuenta <TxtCuenta> el nombre <TxtNombreOportunidad> el tipo de venta <TxtTipoVenta> fecha estimada de venta <DateFecEstimadaVenta> probabilidad de exito <TxtProvExito> fecha estimada de ingreso <DateFecEstimadaIncio> tipo de oportunidad <TxtTipoOportunidad> contrato a meses <TxtContratoMeses> y se guarda la oportunidad
-And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <txtCodigoProducto> 
-And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <txtCapacidad> ciudad a <txtCiudadA> ciudad b <txtCiudadB> dirección <txtDireccion>
+And se ingresa a la oportunidad y se elige la opcion y  se ingresa el producto <TxtCodigoProducto> 
+And se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad capacidad <TxtCapacidad> ciudad a <TxtCiudadA> ciudad b <TxtCiudadB> dirección <TxtDireccion>
 And se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A <TxtSitioA> Sitio B <TxtSitioB> ingresa datos de IPS <TxtNomIPS> y Contacto Tecnico <TxtNomTecnico> ganar <TxtSelecGanarPerder> con Motivo:<TxtMotivoGanarPerder> y Descripcion: <TxtDescripGanarPerder>
 
 Examples:
-|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|DateFecEstimadaVenta|TxtProvExito|DateFecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCapacidad|txtCiudadA|txtCiudadB|txtDireccion|TxtSitioA|TxtSitioB|TxtNomIPS|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
+|TxtUsuario|TxtClave|TxtCuenta|TxtNombreOportunidad|TxtTipoVenta|DateFecEstimadaVenta|TxtProvExito|DateFecEstimadaIncio|TxtTipoOportunidad|TxtContratoMeses|TxtCodigoProducto|TxtCapacidad|TxtCiudadA|TxtCiudadB|TxtDireccion|TxtSitioA|TxtSitioB|TxtNomIPS|TxtNomTecnico|TxtSelecGanarPerder|TxtMotivoGanarPerder|TxtDescripGanarPerder|
 ##@externaldata@./src/test/resources/Datadriven/Express300.xlsx@Express
 |jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto40.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|12|40|120|LIMA|bogotá|Av Republica de Panama 1123|ICA||Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
 |jbedoya@internexa.com|Mar2018*|Avantel S.A.|PRUEBA Auto37.1 Express Ganar Oferta|Nuevo cliente|27/03/2018|40%|28/03/2018|Express|9|37|120|LIMA|bogotá|Av Republica de Panama 1123|ICA|CHICLAYO|Gelly Andrea Bustamante|FERNANDO PARRA|Ganar|4|Ofera 12312|
