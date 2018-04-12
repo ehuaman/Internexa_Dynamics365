@@ -91,7 +91,7 @@ public class LlenarPropiedades extends PageObject {
 	        waitFor(2).seconds();
 	      //*[@id="itx_valorsitioid_IMenu"]/li/a[2][contains(.,'ICA')]
  	
-	        getDriver().findElement(By.xpath("//*[@id=\"itx_valorlistapropiedadid_IMenu\"]/li/a[contains(.,'"+datoPropiedad.toUpperCase()+"')]")).click();
+	        getDriver().findElement(By.xpath("//*[@id=\"itx_valorlistapropiedadid_IMenu\"]/li/a[contains(.,'"+datoPropiedad+"')]")).click();
 	     
 	        Serenity.takeScreenshot();
 	       

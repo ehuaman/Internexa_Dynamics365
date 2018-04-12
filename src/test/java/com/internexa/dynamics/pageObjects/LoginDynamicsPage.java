@@ -7,7 +7,7 @@ import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 
 
-@DefaultUrl("https://crmitxcal.crm2.dynamics.com/main.aspx#593850187")
+@DefaultUrl("https://crmitxprb.crm2.dynamics.com/main.aspx#593850187")
 public class LoginDynamicsPage extends PageObject{
 	String lblInicioSecion = "//div[@id='loginHeader']";
 	String btnSiguientePass= "idSIButton9";

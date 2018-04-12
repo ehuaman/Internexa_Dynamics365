@@ -8,6 +8,8 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.ui.Select;
+
 import com.internexa.dynamics.HtmlTable;
 import com.internexa.dynamics.toolBox.Utilidad;
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
@@ -35,6 +37,10 @@ public class GanarPerderOfertaPage extends PageObject {
 	String ofertaSeleccionada="//*[@id='gridBodyTable']/tbody/tr/td[3]/nobr";
 	@FindBy(xpath="//*[@id='crmRibbonManager']/div/ul/li[4]")
 	public WebElementFacade botonPresentar;
+	
+	@FindBy(xpath="//*[@id='crmRibbonManager']/div/ul/li[7]")
+	public WebElementFacade btnEditarDetalle;
+	
 	String lblContieneIPS="//*[@id='itx_usuarioipsid']/div[1]";
 	String lblDigitaIPS = "//input[@id='itx_usuarioipsid_ledit']";
 	String lblContieneTecnico="//*[@id='itx_contactotecnicoid']/div[1]";
@@ -57,6 +63,20 @@ public class GanarPerderOfertaPage extends PageObject {
 	String editContrato="//input[@id=\"itx_contratoid_ledit\"]";
 	String contCompania="//*[@id=\"itx_companiaitxid\"]/div[1]";
 	String editCompania="//input[@id=\"itx_companiaitxid_ledit\"]";
+	//MODIFICACION NUEVOS OBJEtoS
+	String contModVenta="//*[@id=\"itx_modalidadventa\"]/div[1]";
+	String editModVenta="itx_modalidadventa_i";
+	//String modoVenta="Cargo fijo mensual"; //Cargo fijo mensual-100000000//Cargo variable mensual-100000001 //Cobro único-100000002 //Swaps-100000003 //Otros acuerdos-100000004 //Amortizaciones-100000005
+	
+	String contModFactura="//*[@id=\"itx_modalidadfacturacion\"]/div[1]";
+	String editModFactura="itx_modalidadfacturacion_i";
+	//String modFactura="Anticipado"; //Anticipado-100000000 //presente-100000001 // vencido-100000002
+	String contCuentFactura="//*[@id=\"itx_cuentafacturacionid\"]/div[1]";
+	String editCuentaFactura= "//*[@id=\"itx_cuentafacturacionid_ledit\"]";
+	//String nomCuentaFactura="Nuqui"; //Nuqui
+	//*[@id="Dialog_itx_cuentafacturacionid_IMenu"]/div[2]/ul/li/a[2]
+	///
+	
 	String btnGuardarPant ="//*[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']";
 	String btnPerder="//*[@id='crmRibbonManager']/div/ul/li[6]";
 	String ipsFrame="NavBarGloablQuickCreate";
@@ -108,7 +128,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
            
            catch(Exception ex){
-        	   System.out.println(ex.getMessage()+"");  
+        	   System.out.println("buscarOferta "+ex.getMessage()+"");  
         	   fail();
            }	
 		}
@@ -123,7 +143,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	        getDriver().switchTo().alert().accept();
 	        
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("CrearOferta "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
@@ -154,7 +174,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	getDriver().switchTo().defaultContent();
 	    	
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("OportunidadOfertaRelacionada "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
@@ -181,7 +201,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("SeleccionarIPS "+ex.getMessage() + "");
 	           fail();
 	    }
 	}
@@ -207,7 +227,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
 	        waitFor(1).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("SeleccionarContactoTecnico "+ex.getMessage() + "");
 	           fail();
 	    }
 	}
@@ -219,16 +239,27 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	waitFor(1).seconds();
 	       
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("Presentar "+ex.getMessage() + "");
+	           fail();
+	    }    
+	}
+	public void BtnEditarDetalles() {
+	    try {  
+	    	 utilidad.esperarObjeto(btnEditarDetalle);
+	    	 btnEditarDetalle.click();
+	    	waitFor(1).seconds();
+	       
+	    }catch (Exception ex) {
+	           System.out.println("BtnEditarDetalles "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
 	
-	public void EligeGanarPerder(String strGanarPerder, String strMotivo, String strDescrip) {
+	public void EligeGanarPerder(String strGanarPerder, String strMotivo, String strDescrip,String strNomDocumento) {
 		try{ 
             
 			if (strGanarPerder.equals("Ganar")) {
-				GanarOferta(strMotivo,strDescrip);
+				GanarOferta(strMotivo,strDescrip,strNomDocumento);
 			}
 			else if (strGanarPerder.equals("Perder")) {
 				PerderOferta(strMotivo,strDescrip);
@@ -238,15 +269,14 @@ public class GanarPerderOfertaPage extends PageObject {
             
            
            catch(Exception ex){
-        	   System.out.println(ex.getMessage()+"");  
+        	   System.out.println("EligeGanarPerder "+ex.getMessage()+"");  
         	   fail();
            }	
 		}
 	
-	public void GanarOferta(String strMotivoGanar, String strDescripGanar) {
+	public void GanarOferta(String strMotivoGanar, String strDescripGanar, String strNomDocumento) {
 		try{ 
-			Robot robot = new Robot();
-
+					
 			utilidad.esperaDesaparecer();
 		    waitFor(2).second();
 		    
@@ -273,55 +303,22 @@ public class GanarPerderOfertaPage extends PageObject {
 	    		waitFor(1).second();	
 	    	getDriver().switchTo().parentFrame();
 	    	getDriver().switchTo().defaultContent();
-	    	////Agregar Archivo
-	    	
+
 	    	getDriver().switchTo().frame(idframeCargaArchivo);
-	    		getDriver().findElement(By.xpath(seleccionArchivo)).sendKeys("C:/Users/Administrador/Documents/COLOMBIA-ProyectoINTERNEXA/Documento orden de servicio.txt");
+	    		getDriver().findElement(By.xpath(seleccionArchivo)).sendKeys(strNomDocumento);
 	    		findBy("//*[@id='butBegin']").click();
 	    		waitFor(3).second();
 	    		utilidad.esperaDesaparecer();
 	    		waitFor(3).second();
 	    	getDriver().switchTo().defaultContent();
-	    	
-	    	
 	    	findBy("//*[@id='TabNode_tab0Tab-main']/a/span/span").click();
-	    	
-	    	////////////////////////////////////////////////////////////presentar para asociar
 
-	    	/////////
-	    	findBy(btnTresPuntos).click();
-	    	findBy(btnAsociarContrato).click();	    	
-			///
 	    	////////////////////// Actualizar Contrato
 	    	utilidad.esperaDesaparecer();
-	    	getDriver().switchTo().frame(ipsFrame);
-	    	waitFor(3).second();
-//Ingresar Contrato se ingresa la primera por defefcto
-	    	find(By.xpath(contContrato)).click();
-			robot.keyPress(KeyEvent.VK_F2);
-            find(By.xpath(editContrato)).sendKeys(Keys.ENTER);
-            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_contratoid_IMenu']/div[2]/ul/li[1]")).click();
-			robot.keyPress(KeyEvent.VK_F2);
-//Ingresar Compañia  se ingresa la primera por defefcto
-            find(By.xpath(editCompania)).sendKeys(Keys.ENTER);
-            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_companiaitxid_IMenu']/div[2]/ul/li[1]/a[2]")).click();
-     
-            getDriver().switchTo().defaultContent();
-            
-            Serenity.takeScreenshot();
-            
-            getDriver().findElement(By.xpath(btnGuardarPant)).click();
-            
-            waitFor(2).seconds();
-	        getDriver().switchTo().alert().accept();
-	        waitFor(5).seconds();
-	        getDriver().switchTo().alert().accept();
-	        waitFor(2).seconds();
-
 	        utilidad.esperarObjeto(btnGanar);
 	    	//Ganar Oferta
 			btnGanar.click();
-			
+			waitFor(2).seconds();
 			//Motivo de oferta
 			PantallaCierreOferta (strMotivoGanar, strDescripGanar);
 			//utilidad.esperaDesaparecer();
@@ -330,16 +327,10 @@ public class GanarPerderOfertaPage extends PageObject {
 	        waitFor(2).seconds();
 	        Serenity.takeScreenshot();
 	        waitFor(1).seconds();
-	       /* getDriver().close();
-	        getDriver().switchTo().frame(nombreFrame+"1");
-	        	getDriver().findElement(By.xpath("//*[@id='Administracion_Expander']")).click();
-	        	waitFor(1).seconds();
-	        	getDriver().findElement(By.xpath("//*[@id='Administracion_content']/div/div[1]")).click();
-	        getDriver().switchTo().defaultContent();*/
-	        
+	  
 		}
            catch(Exception ex){
-        	   System.out.println(ex.getMessage()+"");  
+        	   System.out.println("GanarOferta "+ ex.getMessage()+"");  
         	   fail();
            }	
 		}
@@ -361,17 +352,12 @@ public class GanarPerderOfertaPage extends PageObject {
 		        Serenity.takeScreenshot();
 		        getDriver().switchTo().alert().accept();
 		        waitFor(1).seconds();
-		        /*getDriver().switchTo().frame(nombreFrame+"1");
-		        	getDriver().findElement(By.xpath("//*[@id='Administracion_Expander']")).click();
-		        	waitFor(1).seconds();
-		        	getDriver().findElement(By.xpath("//*[@id='Administracion_content']/div/div[1]")).click();
-		        getDriver().switchTo().defaultContent();*/
-			
+	
 			}
             
            
            catch(Exception ex){
-        	   System.out.println(ex.getMessage()+"");  
+        	   System.out.println("PerderOferta "+ex.getMessage()+"");  
         	   fail();
            }	
 		}
@@ -405,11 +391,11 @@ public class GanarPerderOfertaPage extends PageObject {
         
         
         	catch(Exception ex){
-     	    System.out.println(ex.getMessage()+"");  
+     	    System.out.println("PantallaCierreOferta "+ex.getMessage()+"");  
      	   fail();
         	}	
 		}
-	public void IngresarOfertaExpress (String strSitioA,String strSitioB, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip){
+	public void IngresarOfertaExpress (String strSitioA,String strSitioB, String strIPS, String strContactoTec){
 		try{ 
 			Robot robot = new Robot();
 			String element = new String();
@@ -417,13 +403,13 @@ public class GanarPerderOfertaPage extends PageObject {
 			String subWindowHandler = null;
 			String strActivarCampo="NO";
 			
-			//find(By.id(nombreFrame+"0")).setWindowFocus();
-			getDriver().switchTo().frame(nombreFrame+"1");
+			getDriver().switchTo().frame(nombreFrame+"1"); 
+			//	getDriver().switchTo().frame(nombreFrame+"0");
 			waitFor(2).second();
 			String mapeoBotonOferta="//*[@id=\"tab2\"]/div[2]/div/div/table/tbody/tr[2]/td/div/span/div/div/span/div/div/div/div/div[2]/div";
 			getDriver().findElement(By.xpath(mapeoBotonOferta)).click();
 
-			waitFor(8).second();
+			waitFor(12).second();
 
 			Set<String> handles = getDriver().getWindowHandles(); // Obten todas las ventana abiertas
 			Iterator<String> iterator = handles.iterator();
@@ -443,11 +429,12 @@ public class GanarPerderOfertaPage extends PageObject {
 				find(By.xpath("//*[@id='quotedetailsGrid_divDataArea']")).waitUntilClickable();
 				find(By.xpath("//*[@id='quotedetailsGrid_divDataArea']")).click();
 				waitFor(2).second();
-				element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr/td[4]/div")).getText();
+				//MODIFICACION TD+1
+				element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr/td[5]/div")).getText();
 				waitFor(2).second();
                               
-                if (element.equals("No")) {
-                       utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr/td[4]/div");
+                if (element.equals("No") ||element.equals("Não") ) {
+                       utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr/td[5]/div");
                        waitFor(3).second();
                        
                        find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
@@ -501,18 +488,101 @@ public class GanarPerderOfertaPage extends PageObject {
 	            waitFor(3).seconds();
 	            getDriver().navigate().refresh();
 	            utilidad.esperaDesaparecer();
-	            Presentar();
-				
+
+	            
+	           // waitFor(3).second();
 				Serenity.takeScreenshot();
-		        //getDriver().switchTo().alert().accept();
-				
-				EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
-				
-			
-			
+		        				
+				//EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
+
 		}
 	 	catch(Exception ex){
-     	    System.out.println(ex.getMessage()+"");  
+     	    System.out.println("IngresarOfertaExpress "+ex.getMessage()+"");  
+     	   fail();
+        	}	
+		}
+	
+	public void LlenarDatos_Contrato(String strmodoVenta, String strmodFactura, String strnomCuentaFactura) {
+		try{ 
+			Robot robot = new Robot();
+			String parentWindowHandler = getDriver().getWindowHandle(); // Almacena tu ventana actual
+			String subWindowHandler = null;
+			//*[@id="TblListaProductosOferta"]/tbody/tr/td[1]
+			String listProductOferta="//*[@id='TblListaProductosOferta']/tbody/tr/td[1]";
+			String btnProductoSelec="//*[@id='TblListaProductosOferta_wrapper']/div[1]/button[2]";
+			
+			////////////////////////////////////////////////////////////presentar para asociar
+			
+			BtnEditarDetalles();
+			
+			waitFor(3).second();
+			Set<String> handles = getDriver().getWindowHandles(); // Obten todas las ventana abiertas
+			Iterator<String> iterator = handles.iterator();
+			waitFor(4).second();
+			while (iterator.hasNext()){
+			subWindowHandler = iterator.next();
+			}
+			waitFor(2).second();
+			getDriver().switchTo().window(subWindowHandler); // Cámbiate a la ultima ventana (tu pop-up)
+			waitFor(2).second();
+			
+			findBy(listProductOferta).click();
+			findBy(btnProductoSelec).click();
+			
+			waitFor(2).second();
+			
+			getDriver().switchTo().window(parentWindowHandler);
+						
+			
+			getDriver().switchTo().frame(ipsFrame);
+	    	
+	    	find(By.xpath(contModVenta)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+			new Select(getDriver().findElement(By.id(editModVenta))).selectByValue(strmodoVenta.substring(0, 9));
+            //new Select(getDriver().findElement(By.id(editModVenta))).selectByVisibleText(strmodoVenta);
+
+            find(By.xpath(contModFactura)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+			new Select(getDriver().findElement(By.id(editModFactura))).selectByValue(strmodFactura.substring(0, 9));
+			//new Select(getDriver().findElement(By.id(editModFactura))).selectByVisibleText(strmodFactura);
+            
+            find(By.xpath(contCuentFactura)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+            find(By.xpath(editCuentaFactura)).sendKeys(Keys.ENTER);
+            waitFor(2).seconds();
+            getDriver().findElement(By.xpath("//*[@id=\"Dialog_itx_cuentafacturacionid_IMenu\"]/div[2]/ul/li/a[contains(.,'"+strnomCuentaFactura+"')]")).click();
+
+//Ingresar Contrato se ingresa la primera por defefcto
+	    	find(By.xpath(contContrato)).click();
+			robot.keyPress(KeyEvent.VK_F2);
+            find(By.xpath(editContrato)).sendKeys(Keys.ENTER);
+            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_contratoid_IMenu']/div[2]/ul/li[1]")).click();
+            //MODIFICADO agregar Contenedor para ingreso de Compañia
+            find(By.xpath(contCompania)).click();
+            //
+			robot.keyPress(KeyEvent.VK_F2);
+//Ingresar Compañia  se ingresa la primera por defefcto
+            find(By.xpath(editCompania)).sendKeys(Keys.ENTER);
+            getDriver().findElement(By.xpath("//*[@id='Dialog_itx_companiaitxid_IMenu']/div[2]/ul/li[1]/a[2]")).click();
+     
+            getDriver().switchTo().defaultContent();
+			
+            	Serenity.takeScreenshot();
+            
+            getDriver().findElement(By.xpath(btnGuardarPant)).click();
+            
+            waitFor(2).seconds();
+	        getDriver().switchTo().alert().accept();
+	        waitFor(3).second();
+            
+	        Presentar();
+	        
+	        
+			}
+        
+        
+        	catch(Exception ex){
+     	    System.out.println("LlenarDatos_Contrato "+ex.getMessage()+"");  
      	   fail();
         	}	
 		}

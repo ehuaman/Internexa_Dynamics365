@@ -13,6 +13,7 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
+	 String strCadenaTabla= new String();
 	
 	public void encontrarOportunidad(String propiedadCapacidad, 
 									 String propiedadCiudadA, 
@@ -21,6 +22,7 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 									 String propiedadSitioB) {
 		 String element = new String();
 	      String valorElemento = new String();
+	    
 	      
 		 try {
 			 
@@ -42,8 +44,22 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 	       
 	        int i=1;
 	        do {
-	        	 element = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-	               valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+	        	 element = find(By.xpath("//*[@id='instanciapropiedadext_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	        	 strCadenaTabla="//*[@id='instanciapropiedadext_divDataArea']/div/table";
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_portugues_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_portugues_divDataArea']/div/table";
+	             }
+	             
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_ingles_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_ingles_divDataArea']/div/table";
+	             }
+	             
+	        	 
+	        	 valorElemento = find(By.xpath(strCadenaTabla+"/tbody/tr["+i+"]/td[3]/div")).getTextValue();
 	         
              
                if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
@@ -96,7 +112,7 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 	        try {  
 
 	        	String strXpathDobleClick;
-	        	strXpathDobleClick="//*[@id='gridBodyTable']/tbody/tr["+intColumna+"]/td[4]/div";
+	        	strXpathDobleClick=strCadenaTabla+"/tbody/tr["+intColumna+"]/td[4]/div";
 	        	//Funcion que da doble click sobre SI
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	

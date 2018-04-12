@@ -15,6 +15,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
+	String strCadenaTabla;
 	
 	public void encontrarOportunidad(String propiedadCapacidad, 
 									 String propiedadCiudadA, 
@@ -42,10 +43,21 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	       
 	        int i=1;
 	        do {
-	        	
-	        	element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-	        	
-                valorElemento = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+	        	//Cambio OBJETOs??
+	        	element = find(By.xpath("//*[@id='instanciapropiedadext_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	        	 strCadenaTabla="//*[@id='instanciapropiedadext_divDataArea']/div/table";
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_portugues_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_portugues_divDataArea']/div/table";
+	             }
+	             
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_ingles_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_ingles_divDataArea']/div/table";
+	             }
+                valorElemento = find(By.xpath(strCadenaTabla+"/tbody/tr["+i+"]/td[3]/div")).getTextValue();
              
                if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
@@ -99,7 +111,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	        try {  
 
 	        	String strXpathDobleClick;
-	        	strXpathDobleClick="//*[@id='gridBodyTable']/tbody/tr["+intColumna+"]/td[4]/div";
+	        	strXpathDobleClick=strCadenaTabla+"/tbody/tr["+intColumna+"]/td[4]/div";
 	        	//Funcion que da doble click sobre SI
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
@@ -110,7 +122,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	            	else if (intColumna==7) {     
+	            	else if (intColumna==6) {     
 	            		llenarPropiedades.Ciudad(propiedadCiudadB);
 	            	}
 	            		else if (intColumna==8) {     

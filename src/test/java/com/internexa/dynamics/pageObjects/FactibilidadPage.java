@@ -49,6 +49,7 @@ public String numeroFactibilidad;
 	public void AgregarFactibilidad() {
 		try{ 
 			 utilidad.buscarIngresarFrame(nombreFrame);
+			
             waitFor(3).seconds();
 			find(By.xpath(contineFactibilidades)).waitUntilVisible();
 			find(By.xpath(contineFactibilidades)).waitUntilEnabled();
@@ -63,7 +64,7 @@ public String numeroFactibilidad;
             
            }
            catch(Exception ex){
-        	   System.out.println(ex.getMessage()+""); 
+        	   System.out.println("AgregarFactibilidad"+ex.getMessage()+""); 
         	   fail();
            }	
 		}
@@ -72,11 +73,12 @@ public String numeroFactibilidad;
 		
 	    try {
 	    	Robot robot = new Robot();
-            
+	    	
+	    	 waitFor(2).seconds();
             getDriver().switchTo().frame(ipsFrame);
 
             find(By.xpath(contenedorIPS)).waitUntilVisible();
-            findBy(lblContieneIPS).click();
+          //  findBy(lblContieneIPS).click();
             waitFor(1).second();
             robot.keyPress(KeyEvent.VK_F2);
             find(By.xpath(lblDigitaIPS)).typeAndEnter(nombreIPS);
@@ -88,7 +90,7 @@ public String numeroFactibilidad;
 	       
 	        waitFor(2).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("SeleccionarIPS "+ ex.getMessage() + "");
 	           fail();
 	    }
 	}
@@ -106,7 +108,7 @@ public String numeroFactibilidad;
 	        GuardarFactibilidad();
 	        waitFor(2).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("LlenarObservacionSolicitud "+ex.getMessage() + "");
 	           fail();
 	    }
 	    
@@ -122,6 +124,7 @@ public String numeroFactibilidad;
 	        utilidad.esperaDesaparecer();
 	        waitFor(3).seconds();
 	        utilidad.buscarIngresarFrame(nombreFrame);
+	      
             waitFor(2).seconds();
 	        find(By.xpath(divAreaFactibilidad)).waitUntilVisible();
 			find(By.xpath(divAreaFactibilidad)).waitUntilEnabled();
@@ -133,7 +136,7 @@ public String numeroFactibilidad;
 	        getDriver().switchTo().defaultContent();
 	        
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("GuardarFactibilidad" + ex.getMessage() + "");
 	           fail();
 	    }
 	}
@@ -148,17 +151,11 @@ public String numeroFactibilidad;
 	    	Serenity.takeScreenshot();
 	    	
 	    	utilidad.buscarEnGrid(numeroFactibilidad);
-	    	
-	    	
-	    	
-	    //NavBarGloablQuickCreate
-	    	//find(By.xpath("//*[@id=\"itx_factibilidad|NoRelationship|Form|itx.itx_factibilidad.Button.EnviarSolicitudFactibilidad\"]")).click();
-	    	//BUTTON[@id='globalquickcreate_save_button_NavBarGloablQuickCreate']
-	        Serenity.takeScreenshot();
-	        
+	    	Serenity.takeScreenshot();
+	    	//getDriver().navigate().refresh();
 	        
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("EnviarFactibilidad"+ex.getMessage() + "");
 	           fail();
 	    }    
 
@@ -172,29 +169,36 @@ public String numeroFactibilidad;
 			 ArrayList<String> tabs2 = new ArrayList<String> (getDriver().getWindowHandles());
 			 getDriver().switchTo().window(tabs2.get(1));
 
-			 //find(By.id(nombreFrame+"0")).waitUntilVisible();
 			 utilidad.buscarIngresarFrame(nombreFrame);
 		        
 		        waitFor(2).seconds();
 		      
 		        find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]/div/div[1]/div[1]")).click();
-				element=find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]//div/div[1]/div[1]/div/div[1]")).getTextValue();
+				element=find(By.xpath("//*[@id='crmCCDataSet_productosevaluacion']/div/div[5]//div/div[1]/div[1]/div/div[2]")).getTextValue();
 				
-				if (element.contentEquals("No")) {
-					find(By.xpath("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[3]")).click();
-					utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[3]");
+				if (element.contentEquals("No") || element.equals("Não") ) {
+					find(By.xpath("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]")).click();
+					utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]");
 					waitFor(1).seconds();
 					//Web Detalles generales
 					find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
 					getDriver().switchTo().defaultContent();
-
+				}
+					else
+					{
+						find(By.xpath("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]")).click();
+						
+						utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]");
+						waitFor(2).seconds();
+						find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
+						getDriver().switchTo().defaultContent();
 				}
 
 		        waitFor(2).seconds();
 		        getDriver().switchTo().defaultContent();
 		        waitFor(2).seconds();
 		 } catch (Exception ex) {
-		        System.out.println(ex.getMessage() + "");
+		        System.out.println("productoEvaluacion "+ex.getMessage() + "");
 		        fail();
 		 }
 	}
@@ -203,12 +207,12 @@ public String numeroFactibilidad;
 	    try {    
 	    	utilidad.esperaDesaparecer();
 	    	find(By.xpath("//*[@id=\"itx_factibilidad|NoRelationship|Form|itx.itx_factibilidad.Button.EnviarSolicitudFactibilidad\"]")).click();
-	    	waitFor(2).seconds();
+	    	waitFor(5).seconds();
 	        Serenity.takeScreenshot();
 	        getDriver().switchTo().alert().accept();
 	        waitFor(2).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("SolicitarFactibilidad "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
@@ -216,7 +220,8 @@ public String numeroFactibilidad;
 	public void buscarCorreoAprobar() {
 	    try {    
 	    	getDriver().navigate().refresh();
-	    	 utilidad.buscarIngresarFrame(nombreFrame);
+	    	 //utilidad.buscarIngresarFrame(nombreFrame);
+	    	getDriver().switchTo().frame(nombreFrame+"0");
 	        waitFor(2).seconds();
 	    	find(By.xpath("//*[@id='crmGrid_gridBar']/tbody/tr/th[7]/table/tbody/tr/td[1]/a/nobr/label")).click();
 	    	waitFor(1).seconds();
@@ -237,7 +242,9 @@ public String numeroFactibilidad;
                 element2 = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr")).getText();
                 intCatidadElementos=TheTable.getRowElements().size();
              
-                if (element.equals(NuevoOportunidadPage.NombreOportunidad) && element2.equals("Solicitud de factibilidad")) {
+                if ((element.equals(NuevoOportunidadPage.NombreOportunidad) && element2.equals("Solicitud de factibilidad")) ||
+                	(element.equals(NuevoOportunidadPage.NombreOportunidad) && element2.equals("Solicitude estudio de Viabilidade no"))
+                		) {
                        utilidad.dobleClick("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[2]/nobr");
                        salirDo="OK";
                        waitFor(1).second();
@@ -247,6 +254,7 @@ public String numeroFactibilidad;
 	    	
 	    	getDriver().switchTo().defaultContent();
 	    	 utilidad.buscarIngresarFrame(nombreFrame);
+	    	
 	    		find(By.xpath("//*[@id=\"Email_content\"]/div[1]/div[2]")).click();
 	    	Serenity.takeScreenshot();
 	    	
@@ -259,7 +267,7 @@ public String numeroFactibilidad;
 	        waitFor(2).seconds();
 	       
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("buscarCorreoAprobar "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
@@ -267,6 +275,7 @@ public String numeroFactibilidad;
 	public void cambioEstadoFactibilidad() {
 	    try {    
 	    	 utilidad.buscarIngresarFrame(nombreFrame);
+	    	//getDriver().switchTo().frame(nombreFrame+"0");
 	        waitFor(2).seconds();
 	      //*[@id='itx_estadodelproducto']/div[1]
 	        find(By.xpath("//*[@id='itx_estadodelproducto']/div[1]")).click();
@@ -278,12 +287,36 @@ public String numeroFactibilidad;
 
 	        waitFor(2).seconds();
 	    }catch (Exception ex) {
-	           System.out.println(ex.getMessage() + "");
+	           System.out.println("cambioEstadoFactibilidad "+ex.getMessage() + "");
 	           fail();
 	    }    
 	}
 	
-	
+	public void verificarAntesFactibilidad() {
+		String element = new String();
+	    try {   
+	    	waitFor(2).seconds();
+	    	utilidad.buscarIngresarFrame(nombreFrame);
+	    	element=find(By.xpath("//*[@id=\"crmCCDataSet_productosfactibilidad\"]/div/div[5]/div/div/div/div/div[2]")).getTextValue();
+			
+			if (element.contentEquals("No") || element.equals("Não") ) {
+				find(By.xpath("//*[@id=\"crmCCDataSet_productosfactibilidad\"]/div/div[5]/div/div/div/div/div[2]")).click();
+				utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosfactibilidad\"]/div/div[5]/div/div/div/div/div[3]");
+				waitFor(1).seconds();
+				//Web Detalles generales
+				find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
+				getDriver().switchTo().defaultContent();
+				
+			}
+
+	        waitFor(2).seconds();
+	        getDriver().switchTo().defaultContent();
+
+	    }catch (Exception ex) {
+	           System.out.println("verificarAntesFactibilidad "+ex.getMessage() + "");
+	           fail();
+	    }
+	}
 }
 	
 

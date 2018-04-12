@@ -14,7 +14,7 @@ public class BuscarProductoPage extends PageObject {
 	Prd37CarrieEthernetNacionalPuntoApuntoPage prd37CarrieEthernetNacionalPuntoApuntoPage;
 	Prd300IaaSPage prd300IaaSPage;
 
-	public void seleccionarProducto(String Dato1, String Dato2, String Dato3, String Dato4, String Dato5) {
+	public void seleccionarProducto(String Dato1, String Dato2, String Dato3, String Dato4, String Dato5,String Dato6) {
 		//Internexa Last Mile Nacional
 		if (OportunidadPage.codigoProductoRegistar.equals("40")) {
 			producto40LASTMILENACIONALEditarPage.encontrarOportunidad(Dato1, Dato2,  Dato3, Dato4,"");
@@ -29,7 +29,7 @@ public class BuscarProductoPage extends PageObject {
 		}
 		//IaaS
 		else if (OportunidadPage.codigoProductoRegistar.equals("300")) {
-			prd300IaaSPage.encontrarOportunidad(Dato1, Dato2,  Dato3, Dato4,Dato5,"","");
+			prd300IaaSPage.encontrarOportunidad(Dato1, Dato2,  Dato3, Dato4,Dato5,Dato6,"","");
 		}
 	}
 	public void seleccionProdFact(String Dato1,String Dato2) {
@@ -47,7 +47,7 @@ public class BuscarProductoPage extends PageObject {
 		}
 		//IaaS
 		else if (OportunidadPage.codigoProductoRegistar.equals("300")) {
-			prd300IaaSPage.encontrarOportunidad("", "","","","",Dato1,Dato2);
+			prd300IaaSPage.encontrarOportunidad("", "","","","","",Dato1,Dato2);
 		}
 	}
 	

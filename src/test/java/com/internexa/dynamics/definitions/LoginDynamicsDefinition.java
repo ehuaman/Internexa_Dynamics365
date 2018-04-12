@@ -104,6 +104,11 @@ public class LoginDynamicsDefinition {
 	    // Write code here that turns the phrase above into concrete actions
 		factibilidadSteps.enviarSolitudFactibilidad();
 	}
+@Then("^se envia solicitud factibilidad verificar Nombre Aplicativo ([^\"]*) Cuantos Usuarios acceden ([^\"]*)$")
+	public void se_envia_solicitud_factibilidad_verificar_Nombre_Aplicativo_Cuantos_Usuarios_acceden(String Dato01, String Dato02) {
+	    // Write code here that turns the phrase above into concrete actions
+		factibilidadSteps.enviarSolitudFactibilidad300(Dato01,Dato02);
+	}
 	
 	@Then("^se cierra sesión de Gerente Cuenta$")
 	public void se_cierra_sesión_de_Gerente_Cuenta() {
@@ -169,26 +174,39 @@ public class LoginDynamicsDefinition {
 	@Then("^se ingresa ganarPerder ([^\"]*) con Motivo:([^\"]*) y Descripcion: Ofera ([^\"]*)$")
 	public void se_ingresa_ganarPerder_Ganar_con_Motivo_y_Descripcion_Ofera(String strGanarPerder, String strMotivo, String strDescrip) throws Exception {
 	    // Write code here that turns the phrase above into concrete actions
-	   ganarPerderOfertaSteps.seleccionarGanarPerder( strGanarPerder,  strMotivo,  strDescrip);
+	  // ganarPerderOfertaSteps.seleccionarGanarPerder( strGanarPerder,  strMotivo,  strDescrip);
 	}
 	
-	@Then("^se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A ([^\"]*) Sitio B ([^\"]*) ingresa datos de IPS ([^\"]*) y Contacto Tecnico ([^\"]*) ganar ([^\"]*) con Motivo:([^\"]*) y Descripcion: ([^\"]*)$")
-	public void se_ingresa_a_crear_la_oferta_Express_se_ingresa_y_se_llenan_datos_requeridos_Sitio_A_Sitio_B_ingresa_datos_de_IPS_y_Contacto_Tecnico_ganar_con_Motivo_y_Descripcion(String strSitioA, String strSitioB, String strIPS, String strContactoTec, String strGanarPerder, String strMotivo, String strDescrip) {
+	@Then("^se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Sitio A ([^\"]*) Sitio B ([^\"]*) ingresa datos de IPS ([^\"]*) y Contacto Tecnico ([^\"]*)$" )
+	public void se_ingresa_a_crear_la_oferta_Express_se_ingresa_y_se_llenan_datos_requeridos_Sitio_A_Sitio_B_ingresa_datos_de_IPS_y_Contacto_Tecnico_ganar_con_Motivo_y_Descripcion(String strSitioA, String strSitioB, String strIPS, String strContactoTec) {
     // Write code here that turns the phrase above into concrete actions
-    ganarPerderOfertaSteps.ganarPerderExpress( strSitioA, strSitioB, strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+    ganarPerderOfertaSteps.ganarPerderExpress( strSitioA, strSitioB, strIPS,  strContactoTec);
 	}
 	
-	@Then("^se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad Ciudad principal ([^\"]*) capacidad ([^\"]*) MemoriaRAM ([^\"]*) Categoría ([^\"]*) Observación ([^\"]*)$")
-	public void se_ingresa_a_la_pagina_de_propiedades_del_producto_se_elige_las_instancias_requeridas_y_que_posean_campo_de_valor_propiedad_vacio_se_valida_el_tipo_de_dato_y_se_ingresa_para_agregar_valor_propiedad_Ciudad_principal_capacidad_MemoriaRAM_Categoría_Observación(String strCiudadPrincipal, String strCapacidad, String strMemoriaRAM, String strCategoria, String strObstervacion) {
+@Then("^se ingresa informacion de contrato: Modo de Venta ([^\"]*), Modo de facturación: ([^\"]*),Cuenta Facturacion: ([^\"]*)$")
+	public void se_ingresa_informacion_de_contrato_Modo_de_Venta_Modo_de_facturación_Cuenta_Facturacion(String strModoVenta, String strModFactura, String strCtaFacturacion) {
     // Write code here that turns the phrase above into concrete actions
-	productoEditarSteps.editar_producto_300IaaS(strCiudadPrincipal, strCapacidad,  strMemoriaRAM, strCategoria, strObstervacion);
+	ganarPerderOfertaSteps.llenarContrato(strModoVenta, strModFactura, strCtaFacturacion);
+	}
+
+@Then("^se ingresa ganar o perder ([^\"]*) con Motivo:([^\"]*) y Descripcion: ([^\"]*), Si se gana Nombre Documento a cargar: ([^\"]*)$")
+
+public void se_ingresa_ganar_o_perder_con_Motivo_y_Descripcion_Si_se_gana_Nombre_Documento_a_cargar(String strGanarPerder, String strMotivo, String strDescrip, String strNomDocumento)  {
+    // Write code here that turns the phrase above into concrete actions
+	ganarPerderOfertaSteps.eligeGanarPerder(strGanarPerder, strMotivo, strDescrip, strNomDocumento);
+}
+	
+	@Then("^se ingresa a la pagina de propiedades del producto se elige las instancias requeridas y que posean campo de valor propiedad vacio se valida el tipo de dato y se ingresa para agregar valor propiedad Ciudad principal ([^\"]*) capacidad ([^\"]*) MemoriaRAM ([^\"]*) Categoría ([^\"]*) Observación ([^\"]*) Tipo de nube ([^\"]*)$")
+	public void se_ingresa_a_la_pagina_de_propiedades_del_producto_se_elige_las_instancias_requeridas_y_que_posean_campo_de_valor_propiedad_vacio_se_valida_el_tipo_de_dato_y_se_ingresa_para_agregar_valor_propiedad_Ciudad_principal_capacidad_MemoriaRAM_Categoría_Observación_Tipo_de_nube(String strCiudadPrincipal, String strCapacidad, String strMemoriaRAM, String strCategoria, String strObstervacion, String strTipoNube) {
+    // Write code here that turns the phrase above into concrete actions
+	productoEditarSteps.editar_producto_300IaaS(strCiudadPrincipal, strCapacidad,  strMemoriaRAM, strCategoria, strObstervacion, strTipoNube);
 		
 }	
 	
-	@Then("^se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Nombre Aplicativo ([^\"]*) Cuantos Usuarios acceden ([^\"]*) ingresa datos de IPS ([^\"]*) y Contacto Tecnico ([^\"]*) ganar ([^\"]*) con Motivo:([^\"]*) y Descripcion: ([^\"]*)$")
-	public void se_ingresa_a_crear_la_oferta_Express_se_ingresa_y_se_llenan_datos_requeridos_Nombre_Aplicativo_Cuantos_Usuarios_acceden_ingresa_datos_de_IPS_y_Contacto_Tecnico_ganar_con_Motivo_y_Descripcion(String strNomAplicativo, String strNumUsuarios, String strIPS, String strContactoTec, String strGanarPerder, String strMotivo, String strDescrip) {
+	@Then("^se ingresa a crear la oferta Express se ingresa y se llenan datos requeridos, Nombre Aplicativo ([^\"]*) Cuantos Usuarios acceden ([^\"]*) ingresa datos de IPS ([^\"]*) y Contacto Tecnico ([^\"]*)$")
+	public void se_ingresa_a_crear_la_oferta_Express_se_ingresa_y_se_llenan_datos_requeridos_Nombre_Aplicativo_Cuantos_Usuarios_acceden_ingresa_datos_de_IPS_y_Contacto_Tecnico(String strNomAplicativo, String strNumUsuarios, String strIPS, String strContactoTec) {
 	    // Write code here that turns the phrase above into concrete actions
-		ganarPerderOfertaSteps.ganarPerderExpress300(strNomAplicativo, strNumUsuarios, strIPS, strContactoTec, strGanarPerder, strMotivo, strDescrip);
+		ganarPerderOfertaSteps.ganarPerderExpress300(strNomAplicativo, strNumUsuarios, strIPS, strContactoTec);
 	}
 	
 	

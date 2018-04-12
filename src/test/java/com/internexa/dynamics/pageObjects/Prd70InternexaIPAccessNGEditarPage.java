@@ -14,6 +14,7 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
+	String strCadenaTabla;
 	
 	public void encontrarOportunidad(String propiedadCapacidad, 
 									 String propiedadCiudadA,
@@ -40,9 +41,21 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	       
 	        int i=1;
 	        do {
-                element = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-               valorElemento = find(By.xpath("//*[@id=\'gridBodyTable\']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
-
+	        	element = find(By.xpath("//*[@id='instanciapropiedadext_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	        	 strCadenaTabla="//*[@id='instanciapropiedadext_divDataArea']/div/table";
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_portugues_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_portugues_divDataArea']/div/table";
+	             }
+	             
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_ingles_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_ingles_divDataArea']/div/table";
+	             }
+               valorElemento = find(By.xpath(strCadenaTabla+"/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+            
                if ((element.equals("Sí")|| element.equals("Sim") )&& valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
             	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,propiedadSitioA);
@@ -93,18 +106,18 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	        try {  
 
 	        	String strXpathDobleClick;
-	        	strXpathDobleClick="//*[@id='gridBodyTable']/tbody/tr["+intColumna+"]/td[4]/div";
+	        	strXpathDobleClick=strCadenaTabla+"/tbody/tr["+intColumna+"]/td[4]/div";
 	        	//Funcion que da doble click sobre SI
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
-	        	if (intColumna == 1) {
+	        	if (intColumna == 2) {
 	        		llenarPropiedades.ValorDecimal(propiedadCapacidad);
 	        		}
-	            else if (intColumna==5 ) {
+	            else if (intColumna==6 ) {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	           	else if (intColumna==13) {     
+	           	else if (intColumna==13 || (intColumna==14 && strCadenaTabla.equals("//*[@id='propiedades_portugues_divDataArea']/div/table"))) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
 	            		}
 		           

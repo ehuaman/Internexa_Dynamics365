@@ -11,12 +11,12 @@ public class ProductoEditarSteps {
 	@Step
 	public void editar_producto_oportunidad(String Dato1, String Dato2, String Dato3, String Dato4) {
 		
-		buscarProductoPage.seleccionarProducto(Dato1, Dato2, Dato3, Dato4,"");
+		buscarProductoPage.seleccionarProducto(Dato1, Dato2, Dato3, Dato4,"","");
 		
 	}
-	public void editar_producto_300IaaS(String Dato1, String Dato2, String Dato3, String Dato4, String Dato5) {
+	public void editar_producto_300IaaS(String Dato1, String Dato2, String Dato3, String Dato4, String Dato5,String Dato6) {
 		
-		buscarProductoPage.seleccionarProducto(Dato1, Dato2, Dato3, Dato4, Dato5);
+		buscarProductoPage.seleccionarProducto(Dato1, Dato2, Dato3, Dato4, Dato5,Dato6);
 		
 	}
 }

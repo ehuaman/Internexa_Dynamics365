@@ -1,5 +1,6 @@
 package com.internexa.dynamics.pageObjects;
 
+import com.internexa.dynamics.HtmlTable;
 import com.internexa.dynamics.toolBox.Utilidad;
 
 import net.serenitybdd.core.annotations.findby.By;
@@ -31,10 +32,33 @@ public class MenuActividadPage extends PageObject {
 	public void todosLosMensajes() {
 		getDriver().switchTo().frame("contentIFrame0");
         waitFor(2).seconds();
+        Integer intNumElementos;
 		
         find(By.xpath("//*[@id='Dialog_ViewMenu_email']/div/ul/li[8]/a[2]/span/nobr/span")).waitUntilVisible();
 		find(By.xpath("//*[@id='Dialog_ViewMenu_email']/div/ul/li[8]/a[2]/span/nobr/span")).waitUntilEnabled();
 		find(By.xpath("//*[@id='Dialog_ViewMenu_email']/div/ul/li[8]/a[2]/span/nobr/span")).click();
+		
+		//PARA PORTUGUES
+		HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
+		if (TheTable.getRowElements().size()==0) {
+			find(By.id("crmGrid_SavedNewQuerySelector")).click();
+			find(By.id("ViewSelector_email")).click();
+			find(By.xpath("//*[@id='Dialog_ViewMenu_email']/div/ul/li[7]/a[2]/span/nobr/span")).click();
+			
+		}
+		
+		//PARA INGLES
+		HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
+		if (TheTable1.getRowElements().size()==0) {
+			find(By.id("crmGrid_SavedNewQuerySelector")).click();
+			find(By.id("ViewSelector_email")).click();
+			find(By.xpath("//*[@id='Dialog_ViewMenu_email']/div/ul/li[1]/a[2]/span/nobr/span")).click();
+			
+		}
+		
+		
+		
+		
 		getDriver().switchTo().defaultContent();
 	}
 

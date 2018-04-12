@@ -17,19 +17,28 @@ public class GanarPerderOfertaSteps  {
 	public void IngresarIPSyTecnico(String NombreIPS, String ContactTecnico) {
 		ganarPerderOfertaPage.SeleccionarContactoTecnico(ContactTecnico);
 		ganarPerderOfertaPage.SeleccionarIPS(NombreIPS);
-		ganarPerderOfertaPage.Presentar();
+		//ganarPerderOfertaPage.Presentar();
 	}
 	
-	public void seleccionarGanarPerder(String strGanarPerder, String strMotivo, String strDescrip) {
-		ganarPerderOfertaPage.EligeGanarPerder(strGanarPerder, strMotivo, strDescrip);
+	public void seleccionarGanarPerder(String strGanarPerder, String strMotivo, String strDescrip, String strNomDocumento) {
+		ganarPerderOfertaPage.EligeGanarPerder(strGanarPerder, strMotivo, strDescrip, strNomDocumento);
 	}
 	
-	public void ganarPerderExpress(String strSitioA, String strSitioB, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
-		ganarPerderOfertaPage.IngresarOfertaExpress( strSitioA, strSitioB, strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	public void ganarPerderExpress(String strSitioA, String strSitioB, String strIPS, String strContactoTec) {
+		ganarPerderOfertaPage.IngresarOfertaExpress( strSitioA, strSitioB, strIPS,  strContactoTec);
 	}
 	
-	public void ganarPerderExpress300(String strNomAplicativo, String strNumUsuarios, String strIPS, String strContactoTec, String strGanarPerder , String strMotivo, String strDescrip) {
-		ganarPerderOfertaPage.IngresarOfertaExpress( strNomAplicativo, strNumUsuarios, strIPS,  strContactoTec,  strGanarPerder ,  strMotivo,  strDescrip);
+	public void ganarPerderExpress300(String strNomAplicativo, String strNumUsuarios, String strIPS, String strContactoTec) {
+		ganarPerderOfertaPage.IngresarOfertaExpress( strNomAplicativo, strNumUsuarios, strIPS,  strContactoTec);
 	}
+	
+	public void eligeGanarPerder(String strGanarPerder , String strMotivo, String strDescrip, String strNomDocumento) {
+		ganarPerderOfertaPage.EligeGanarPerder( strGanarPerder, strMotivo, strDescrip,strNomDocumento);
+	}
+	public void llenarContrato(String strmodoVenta, String strmodFactura, String strnomCuentaFactura) {
+		ganarPerderOfertaPage.LlenarDatos_Contrato(strmodoVenta, strmodFactura, strnomCuentaFactura);
+	}
+	
+	
 
 }

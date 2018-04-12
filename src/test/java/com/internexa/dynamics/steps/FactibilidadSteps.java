@@ -3,6 +3,7 @@ package com.internexa.dynamics.steps;
 import com.internexa.dynamics.pageObjects.BuscarProductoPage;
 import com.internexa.dynamics.pageObjects.FactibilidadPage;
 import com.internexa.dynamics.pageObjects.Producto40LASTMILENACIONALEditarPage;
+import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
 
 import net.thucydides.core.annotations.Step;
 
@@ -11,7 +12,7 @@ public class FactibilidadSteps  {
 	FactibilidadPage factibilidadPage;
 	BuscarProductoPage buscarProductoPage;
 	Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
-	
+	GuardarCerrarToolBox guardarCerrarToolBox;
 	
 	@Step
 	public void ingresaFactibilidad() {
@@ -28,6 +29,15 @@ public class FactibilidadSteps  {
 	public void enviarSolitudFactibilidad() {
 		
 		factibilidadPage.EnviarFactibilidad();
+		//factibilidadPage.ProductoEvaluación();
+		factibilidadPage.SolicitarFactibilidad();
+	}
+	public void enviarSolitudFactibilidad300(String Dato01, String Dato02) {
+		
+		factibilidadPage.EnviarFactibilidad();
+		factibilidadPage.verificarAntesFactibilidad();
+		buscarProductoPage.seleccionProdFact(Dato01,Dato02);
+		 guardarCerrarToolBox.btnGuardarCerrar();
 		//factibilidadPage.ProductoEvaluación();
 		factibilidadPage.SolicitarFactibilidad();
 	}

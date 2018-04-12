@@ -15,16 +15,19 @@ public class Prd300IaaSPage extends PageObject {
 	GuardarCerrarToolBox guardarCerrarToolBox;
 	Utilidad utilidad;
 	LlenarPropiedades llenarPropiedades;
+	String strCadenaTabla;
 	
 	public void encontrarOportunidad(String strCiudadPrincipal, 
 									 String strCapacidad, 
 									 String strMemoriaRAM, 
 									 String strCategoria, 
 									 String strObstervacion,
+									 String strTipoNube, //nuevo
 									 String strNomAplicativo,
 									 String strNumUsuarios) {
 		 String element = new String();
 	      String valorElemento = new String();
+	      Integer arra;
 	      
 		 try {
 			
@@ -33,6 +36,7 @@ public class Prd300IaaSPage extends PageObject {
 			 }
 			 else
 			 {
+				 getDriver().navigate().refresh();
 				 getDriver().switchTo().frame("contentIFrame"+"0");
 			 }
 			 //utilidad.buscarIngresarFrame("contentIFrame");
@@ -44,13 +48,26 @@ public class Prd300IaaSPage extends PageObject {
 	        int i=1;
 	        do {
 	        	
-	        	element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div")).getTextValue();
-	        	
-                valorElemento = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[3]/div")).getTextValue();
-             
+	        	element = find(By.xpath("//*[@id='instanciapropiedadext_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+	        	 strCadenaTabla="//*[@id='instanciapropiedadext_divDataArea']/div/table";
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_portugues_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_portugues_divDataArea']/div/table";
+	             }
+	             
+	        	 if (element.isEmpty() )
+	             {
+	        		 element = find(By.xpath("//*[@id='propiedades_ingles_divDataArea']/div/table/tbody/tr["+i+"]/td[4]/div")).getTextValue();
+		        	 strCadenaTabla="//*[@id='propiedades_ingles_divDataArea']/div/table";
+	             }
+	             
+	        	 
+	        	 valorElemento = find(By.xpath(strCadenaTabla+"/tbody/tr["+i+"]/td[3]/div")).getTextValue();
+	         
                if ((element.equals("Sí")|| element.equals("Sim") ) && valorElemento.isEmpty() ) {                               
             	   //System.out.println(element+"Cambiar");
-            	   ActualizarPropiedadesProducto(i, strCiudadPrincipal,  strCapacidad,  strMemoriaRAM,  strCategoria,  strObstervacion,strNomAplicativo,strNumUsuarios);
+            	   ActualizarPropiedadesProducto(i, strCiudadPrincipal,  strCapacidad,  strMemoriaRAM,  strCategoria,  strObstervacion,strTipoNube,strNomAplicativo,strNumUsuarios);
             	   
             	   if (strNumUsuarios.equals("")) {
       				 getDriver().switchTo().frame("contentIFrame"+"1");
@@ -64,10 +81,16 @@ public class Prd300IaaSPage extends PageObject {
             	   HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
             	   TheTable=TheTable1;
             	   i++;
+            	 
+            	   arra=TheTable.getRowElements().size();
+            	   waitFor(2).seconds();
                } else { 
-            	   i++;                              
+            	   i++;     
+            	   
+            	   arra=TheTable.getRowElements().size();
+            	   waitFor(2).seconds();
                }                   
-	        }while(i<=TheTable.getRowElements().size());
+	        }while(i-1<TheTable.getRowElements().size());
 			        waitFor(1).second();
 		            getDriver().switchTo().defaultContent();
 		            waitFor(1).seconds();
@@ -95,12 +118,13 @@ public class Prd300IaaSPage extends PageObject {
 											  String strMemoriaRAM, 
 											  String strCategoria, 
 											  String strObstervacion,
+											  String strTipoNube, //Campo nuevo
 											  String strNomAplicativo,
 											  String strNumUsuarios) {
 	        try {  
 
 	        	String strXpathDobleClick;
-	        	strXpathDobleClick="//*[@id='gridBodyTable']/tbody/tr["+intColumna+"]/td[4]/div";
+	        	strXpathDobleClick=strCadenaTabla+"/tbody/tr["+intColumna+"]/td[4]/div";
 	        	//Funcion que da doble click sobre SI
 	        	utilidad.dobleClick(strXpathDobleClick);
 	        	waitFor(3).second();
@@ -119,6 +143,9 @@ public class Prd300IaaSPage extends PageObject {
 	            		}
 	            		else if (intColumna==8) {     
 	            			llenarPropiedades.ValorPropiedad(strObstervacion);
+	            		}
+	            		else if (intColumna==9) {     
+	            			llenarPropiedades.ValorListaPropiedad(strTipoNube);
 	            		}
 		            		else if (intColumna==14) {     
 		            			llenarPropiedades.ValorPropiedad(strNomAplicativo);

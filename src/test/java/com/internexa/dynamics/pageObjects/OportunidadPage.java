@@ -72,12 +72,15 @@ public class OportunidadPage extends PageObject{
                int i=1;
                int intCatidadElementos;
                do {
-                      element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[4]/div[1]")).getText();
+            	   //MODIFICAR POR CAMBIO td+1
+                      element = find(By.xpath("//*[@id='gridBodyTable']/tbody/tr["+i+"]/td[5]/div[1]")).getText();
                       intCatidadElementos=TheTable.getRowElements().size();
                      
                       if (element.equals("No") || element.equals("Não") ) {
                             // System.out.println(find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]")).getText());
-                             find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[8]/nobr/a/li/span/span/span[2]")).click();
+                    	                  //*[@id="gridBodyTable"]/tbody/tr/td[9]/nobr/a   
+                   //MODIFICAR POR CAMBIO td+1
+                    	  find(By.xpath("//*[@id=\"gridBodyTable\"]/tbody/tr["+i+"]/td[9]/nobr/a/li/span/span/span[2]")).click();
                              waitFor(3).second();
                       }            
                       i++;

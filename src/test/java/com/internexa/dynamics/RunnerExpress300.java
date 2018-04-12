@@ -12,8 +12,6 @@ import com.internexa.dynamics.toolBox.BeforeSuite;
 import com.internexa.dynamics.toolBox.DataToFeature;
 
 import cucumber.api.CucumberOptions;
-import cucumber.api.SnippetType;
-
 
 
 @CucumberOptions (features = "src/test/resources/features/Internexa/Dynamics", tags = {"@CPOportunidadExpres300"}, monochrome= true)

@@ -8,15 +8,9 @@ import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.DoubleClickAction;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.seleniumhq.jetty9.util.log.Log;
-import com.internexa.dynamics.HtmlTable;
+
 
 //FECHA
 import java.text.DateFormat;
@@ -58,7 +52,7 @@ public class Utilidad extends PageObject {
 	}
 	
 	public void buscarEnGrid(String strBuscar) {
-		 String element = new String();
+		 
 		 try {
 			 //ENVIAR UN F5
 			 
