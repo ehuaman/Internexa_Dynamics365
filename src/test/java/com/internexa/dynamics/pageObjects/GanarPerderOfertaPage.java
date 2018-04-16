@@ -577,7 +577,7 @@ public class GanarPerderOfertaPage extends PageObject {
             
 	        Presentar();
 	        
-	        
+	        waitFor(3).second();
 			}
         
         
