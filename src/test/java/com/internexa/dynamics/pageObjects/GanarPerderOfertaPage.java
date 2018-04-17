@@ -37,6 +37,8 @@ public class GanarPerderOfertaPage extends PageObject {
 	String ofertaSeleccionada="//*[@id='gridBodyTable']/tbody/tr/td[3]/nobr";
 	@FindBy(xpath="//*[@id='crmRibbonManager']/div/ul/li[4]")
 	public WebElementFacade botonPresentar;
+	@FindBy(xpath="//*[@id='TabNode_tab0Tab-main']/a/span/span")
+	public WebElementFacade documentoGanar;
 	
 	@FindBy(xpath="//*[@id='crmRibbonManager']/div/ul/li[7]")
 	public WebElementFacade btnEditarDetalle;
@@ -296,22 +298,25 @@ public class GanarPerderOfertaPage extends PageObject {
 		   
 		    waitFor(1).second();
 	    	getDriver().switchTo().frame(idframeContenedor);
-	    		utilidad.esperarObjeto(btnCargarDoc);
+	    	utilidad.esperarObjeto(btnCargarDoc);
 	    		    		
 	    		
-	    		btnCargarDoc.click();
-	    		waitFor(1).second();	
+	    	btnCargarDoc.click();
+	    	waitFor(2).second();	
 	    	getDriver().switchTo().parentFrame();
 	    	getDriver().switchTo().defaultContent();
 
 	    	getDriver().switchTo().frame(idframeCargaArchivo);
-	    		getDriver().findElement(By.xpath(seleccionArchivo)).sendKeys(strNomDocumento);
+	    	getDriver().findElement(By.xpath(seleccionArchivo)).sendKeys(strNomDocumento);
 	    		findBy("//*[@id='butBegin']").click();
-	    		waitFor(3).second();
+	    	
+	    		waitFor(5).second();
 	    		utilidad.esperaDesaparecer();
 	    		waitFor(3).second();
 	    	getDriver().switchTo().defaultContent();
-	    	findBy("//*[@id='TabNode_tab0Tab-main']/a/span/span").click();
+	    	
+	    	utilidad.esperarObjeto(documentoGanar);
+	    	documentoGanar.click();
 
 	    	////////////////////// Actualizar Contrato
 	    	utilidad.esperaDesaparecer();
@@ -322,7 +327,7 @@ public class GanarPerderOfertaPage extends PageObject {
 			//Motivo de oferta
 			PantallaCierreOferta (strMotivoGanar, strDescripGanar);
 			//utilidad.esperaDesaparecer();
-			waitFor(5).seconds();
+			waitFor(7).seconds();
 			getDriver().switchTo().alert().accept();
 	        waitFor(2).seconds();
 	        Serenity.takeScreenshot();
@@ -571,10 +576,10 @@ public class GanarPerderOfertaPage extends PageObject {
             
             getDriver().findElement(By.xpath(btnGuardarPant)).click();
             
-            waitFor(2).seconds();
+            waitFor(5).seconds();
 	        getDriver().switchTo().alert().accept();
 	        waitFor(3).second();
-            
+            utilidad.esperaDesaparecer();
 	        Presentar();
 	        
 	        waitFor(3).second();

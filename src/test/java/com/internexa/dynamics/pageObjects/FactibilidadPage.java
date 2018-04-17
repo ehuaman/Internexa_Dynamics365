@@ -3,7 +3,9 @@ package com.internexa.dynamics.pageObjects;
 import net.serenitybdd.core.Serenity;
 
 import net.serenitybdd.core.annotations.findby.By;
+import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.PageObject;
+import net.serenitybdd.core.pages.WebElementFacade;
 
 import com.internexa.dynamics.toolBox.GuardarCerrarToolBox;
 import com.internexa.dynamics.toolBox.Utilidad;
@@ -26,6 +28,9 @@ MenuOportunidadPage menuOportunidad;
 
 Producto40LASTMILENACIONALEditarPage producto40LASTMILENACIONALEditarPage;
 GuardarCerrarToolBox guardarCerrarToolBox;
+
+@FindBy(xpath="//*[@id=\"itx_instanciaproductoid_lookupValue\"]")
+public WebElementFacade propiedadesObjt;
 
 String nombreFrame = "contentIFrame";
 String contineFactibilidades ="//*[@id='titleContainer_factibilidades']";
@@ -181,6 +186,7 @@ public String numeroFactibilidad;
 					utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]");
 					waitFor(1).seconds();
 					//Web Detalles generales
+					utilidad.esperarObjeto(propiedadesObjt);
 					find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
 					getDriver().switchTo().defaultContent();
 				}
@@ -190,6 +196,7 @@ public String numeroFactibilidad;
 						
 						utilidad.dobleClick("//*[@id=\"crmCCDataSet_productosevaluacion\"]/div/div[5]//div/div[1]/div[1]/div/div[4]");
 						waitFor(2).seconds();
+						utilidad.esperarObjeto(propiedadesObjt);
 						find(By.xpath("//*[@id=\"itx_instanciaproductoid_lookupValue\"]")).click();
 						getDriver().switchTo().defaultContent();
 				}
