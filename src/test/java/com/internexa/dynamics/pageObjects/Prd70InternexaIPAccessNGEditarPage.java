@@ -117,7 +117,7 @@ public class Prd70InternexaIPAccessNGEditarPage extends PageObject {
 	             	
 	            		llenarPropiedades.Ciudad(propiedadCiudadA);
 	            	}
-	           	else if (intColumna==13 || (intColumna==14 && strCadenaTabla.equals("//*[@id='propiedades_portugues_divDataArea']/div/table"))) {     
+	           	else if (intColumna==13 ||(intColumna==14 && strCadenaTabla.equals("//*[@id='instanciapropiedadext_divDataArea']/div/table"))  || (intColumna==14 && strCadenaTabla.equals("//*[@id='propiedades_portugues_divDataArea']/div/table"))) {     
 	            			llenarPropiedades.Sitio(propiedadSitioA);
 	            		}
 		           
