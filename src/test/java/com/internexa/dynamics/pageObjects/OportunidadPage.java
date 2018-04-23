@@ -63,8 +63,10 @@ public class OportunidadPage extends PageObject{
 	
 	//propiedades producto
 	public void verificarEstadoProducto() {
-        try {        
-               getDriver().switchTo().frame("contentIFrame1");
+        try {  
+        	getDriver().navigate().refresh();//Agregado por cambio asincrono
+			waitFor(1).seconds(); // agregado por cambio asincrono
+               getDriver().switchTo().frame("contentIFrame0"); // agregado por cambio asincrono contentIFrame1 por contentIFrame0
                waitFor(1).seconds();             
                HtmlTable TheTable = new HtmlTable(find(By.id("gridBodyTable")));
                String element = new String();

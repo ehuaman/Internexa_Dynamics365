@@ -29,7 +29,7 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
 			 //getDriver().navigate().refresh();
 			 
 			 if (propiedadSitioB.equals("")) {
-				 getDriver().switchTo().frame("contentIFrame"+"1");
+				 getDriver().switchTo().frame("contentIFrame"+"0"); //modificacion por actualizacion contentIFrame1 por contentIFrame0
 			 }
 			 else
 			 {
@@ -67,7 +67,7 @@ public class Prd37CarrieEthernetNacionalPuntoApuntoPage extends PageObject {
             	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadSitioA,propiedadSitioB);
             	   
             	   if (propiedadSitioB.equals("")) {
-      				 getDriver().switchTo().frame("contentIFrame"+"1");
+      				 getDriver().switchTo().frame("contentIFrame"+"0"); //modificacion por actualizacion contentIFrame1 por contentIFrame0
 	            	   }
 	      			 else
 	      			 {

@@ -69,7 +69,7 @@ public String numeroFactibilidad;
             
            }
            catch(Exception ex){
-        	   System.out.println("AgregarFactibilidad"+ex.getMessage()+""); 
+        	   System.out.println("AgregarFactibilidad "+ex.getMessage()+""); 
         	   fail();
            }	
 		}

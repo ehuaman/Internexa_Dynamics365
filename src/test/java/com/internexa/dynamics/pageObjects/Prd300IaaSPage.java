@@ -27,12 +27,12 @@ public class Prd300IaaSPage extends PageObject {
 									 String strNumUsuarios) {
 		 String element = new String();
 	      String valorElemento = new String();
-	      Integer arra;
+	     
 	      
 		 try {
 			
 			 if (strNumUsuarios.equals("")) {
-				 getDriver().switchTo().frame("contentIFrame"+"1");
+				 getDriver().switchTo().frame("contentIFrame"+"0"); //modificacion por actualizacion contentIFrame1 por contentIFrame0
 			 }
 			 else
 			 {
@@ -69,28 +69,27 @@ public class Prd300IaaSPage extends PageObject {
             	   //System.out.println(element+"Cambiar");
             	   ActualizarPropiedadesProducto(i, strCiudadPrincipal,  strCapacidad,  strMemoriaRAM,  strCategoria,  strObstervacion,strTipoNube,strNomAplicativo,strNumUsuarios);
             	   
-            	   if (strNumUsuarios.equals("")) {
-      				 getDriver().switchTo().frame("contentIFrame"+"1");
-      			 }
-      			 else
-      			 {
-      				 getDriver().switchTo().frame("contentIFrame"+"0");
-      			 }
+            	   //if (strNumUsuarios.equals("")) {
+      				 getDriver().switchTo().frame("contentIFrame"+"0"); //modificacion por actualizacion contentIFrame1 por contentIFrame0
+      			 //}
+      			 //else
+      			 //{
+      			//	 getDriver().switchTo().frame("contentIFrame"+"0");
+      			 //}
             	   //utilidad.buscarIngresarFrame("contentIFrame");
             	   
             	   HtmlTable TheTable1 = new HtmlTable(find(By.id("gridBodyTable")));
             	   TheTable=TheTable1;
             	   i++;
             	 
-            	   arra=TheTable.getRowElements().size();
             	   waitFor(2).seconds();
                } else { 
             	   i++;     
             	   
-            	   arra=TheTable.getRowElements().size();
+            	   
             	   waitFor(2).seconds();
                }                   
-	        }while(i-1<TheTable.getRowElements().size());
+	        }while(i<=TheTable.getRowElements().size());
 			        waitFor(1).second();
 		            getDriver().switchTo().defaultContent();
 		            waitFor(1).seconds();
@@ -98,7 +97,7 @@ public class Prd300IaaSPage extends PageObject {
 		            Serenity.takeScreenshot();
 		            waitFor(2).seconds();
 		 	}catch (Exception ex) {
-		        System.out.println(ex.getMessage() + "");
+		        System.out.println("encontrarOportunidad " + ex.getMessage() + "");
 		        fail();
 			 }
 	 	}

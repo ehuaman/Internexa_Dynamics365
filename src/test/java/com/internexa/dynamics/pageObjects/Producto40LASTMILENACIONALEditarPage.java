@@ -28,7 +28,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
 		 try {
 			
 			 if (propiedadSitioA.equals("")) {
-				 getDriver().switchTo().frame("contentIFrame"+"1");
+				 getDriver().switchTo().frame("contentIFrame"+"0");//modificacion por actualizacion contentIFrame1 por contentIFrame0
 			 }
 			 else
 			 {
@@ -64,7 +64,7 @@ public class Producto40LASTMILENACIONALEditarPage extends PageObject {
             	   ActualizarPropiedadesProducto(i,propiedadCapacidad, propiedadCiudadA,  propiedadCiudadB, propiedadDireccion,propiedadSitioA);
             	   
             	   if (propiedadSitioA.equals("")) {
-      				 getDriver().switchTo().frame("contentIFrame"+"1");
+      				 getDriver().switchTo().frame("contentIFrame"+"0");//modificacion por actualizacion contentIFrame1 por contentIFrame0
       			 }
       			 else
       			 {

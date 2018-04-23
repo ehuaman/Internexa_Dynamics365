@@ -141,7 +141,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	find(By.xpath(botonCreaOferta)).click();
 	    	waitFor(5).seconds();
 	        Serenity.takeScreenshot();
-	        waitFor(5).seconds();
+	        waitFor(12).seconds();
 	        getDriver().switchTo().alert().accept();
 	        
 	    }catch (Exception ex) {
@@ -408,8 +408,8 @@ public class GanarPerderOfertaPage extends PageObject {
 			String subWindowHandler = null;
 			String strActivarCampo="NO";
 			
-			getDriver().switchTo().frame(nombreFrame+"1"); 
-			//	getDriver().switchTo().frame(nombreFrame+"0");
+			//getDriver().switchTo().frame(nombreFrame+"1");  // Se actualiza nombreFrame por cambio final
+				getDriver().switchTo().frame(nombreFrame+"0");
 			waitFor(2).second();
 			String mapeoBotonOferta="//*[@id=\"tab2\"]/div[2]/div/div/table/tbody/tr[2]/td/div/span/div/div/span/div/div/div/div/div[2]/div";
 			getDriver().findElement(By.xpath(mapeoBotonOferta)).click();
@@ -460,7 +460,8 @@ public class GanarPerderOfertaPage extends PageObject {
 				getDriver().switchTo().window(parentWindowHandler);
 				
 				//OportunidadOfertaRelacionada();
-				getDriver().switchTo().frame(nombreFrame+"1");
+				//getDriver().switchTo().frame(nombreFrame+"1");  // Se actualiza nombreFrame por cambio final
+				getDriver().switchTo().frame(nombreFrame+"0");
 				waitFor(2).second();
 				getDriver().findElement(By.xpath("//*[@id='quote_divDataArea']/div/table/tbody/tr/td[3]/nobr")).click();
 				waitFor(2).second();
@@ -561,6 +562,7 @@ public class GanarPerderOfertaPage extends PageObject {
 	    	find(By.xpath(contContrato)).click();
 			robot.keyPress(KeyEvent.VK_F2);
             find(By.xpath(editContrato)).sendKeys(Keys.ENTER);
+            waitFor(1).seconds();
             getDriver().findElement(By.xpath("//*[@id='Dialog_itx_contratoid_IMenu']/div[2]/ul/li[1]")).click();
             //MODIFICADO agregar Contenedor para ingreso de Compañia
             find(By.xpath(contCompania)).click();
@@ -568,6 +570,7 @@ public class GanarPerderOfertaPage extends PageObject {
 			robot.keyPress(KeyEvent.VK_F2);
 //Ingresar Compañia  se ingresa la primera por defefcto
             find(By.xpath(editCompania)).sendKeys(Keys.ENTER);
+            waitFor(1).seconds();
             getDriver().findElement(By.xpath("//*[@id='Dialog_itx_companiaitxid_IMenu']/div[2]/ul/li[1]/a[2]")).click();
      
             getDriver().switchTo().defaultContent();
